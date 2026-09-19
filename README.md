@@ -369,4 +369,3 @@ For issues, questions, or feature requests, please open an issue on the project 
 
 ---
 
-**Built with ❤️ for better weather understanding**
