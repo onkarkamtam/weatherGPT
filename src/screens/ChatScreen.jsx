@@ -345,10 +345,9 @@ IMPORTANT RULES FOR YOUR RESPONSE:
 2. Use wording like: "No active IMD warning for ${location.label} is currently visible in the available CAP feed."
    - Always refer to the user's requested location (${location.label}), NOT to the state name (${state || 'unknown'}).
    - The state resolution is internal — users only care about the city they asked about.
-3. Mention that users may wish to check mausam.imd.gov.in for the latest official advisories.
-4. Do NOT apologize or mention technical limitations.
-5. Be concise — 2-3 sentences.
-6. End with: "Source: IMD CAP feed."
+3. Do NOT apologize or mention technical limitations.
+4. Be concise — 2 sentences maximum.
+5. End with: "Source: IMD CAP feed."
 `.trim()
         }
 
