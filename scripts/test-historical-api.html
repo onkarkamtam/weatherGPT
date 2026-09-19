@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Historical Weather API Tester</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    .container {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+    }
+    h1 { color: #333; }
+    h2 { color: #666; font-size: 18px; margin-top: 20px; }
+    .location { margin-bottom: 15px; }
+    button {
+      background: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      margin: 5px;
+    }
+    button:hover { background: #45a049; }
+    button:disabled { background: #ccc; cursor: not-allowed; }
+    .results {
+      margin-top: 20px;
+      padding: 15px;
+      background: #f9f9f9;
+      border-left: 4px solid #4CAF50;
+      border-radius: 4px;
+      white-space: pre-wrap;
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+      max-height: 600px;
+      overflow-y: auto;
+    }
+    .error {
+      border-left-color: #f44336;
+      background: #ffebee;
+      color: #c62828;
+    }
+    .success {
+      border-left-color: #4CAF50;
+      background: #e8f5e9;
+    }
+    .url {
+      background: #e3f2fd;
+      padding: 10px;
+      border-radius: 4px;
+      margin: 10px 0;
+      word-break: break-all;
+      font-size: 11px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🔍 Historical Weather API Diagnostic Tool</h1>
+  
+  <div class="container">
+    <h2>Test Locations</h2>
+    <p>Click to test historical weather API for each location:</p>
+    
+    <div class="grid">
+      <div class="location">
+        <h3>✅ Solapur (Working)</h3>
+        <button onclick="testLocation(17.6868, 75.9064, 'Solapur')">Test Solapur</button>
+      </div>
+      
+      <div class="location">
+        <h3>❌ Mumbai (Failing)</h3>
+        <button onclick="testLocation(19.0760, 72.8777, 'Mumbai')">Test Mumbai</button>
+      </div>
+      
+      <div class="location">
+        <h3>❌ Delhi (Failing)</h3>
+        <button onclick="testLocation(28.7041, 77.1025, 'Delhi')">Test Delhi</button>
+      </div>
+      
+      <div class="location">
+        <h3>🔬 Bangalore</h3>
+        <button onclick="testLocation(12.9716, 77.5946, 'Bangalore')">Test Bangalore</button>
+      </div>
+      
+      <div class="location">
+        <h3>🔬 Pune</h3>
+        <button onclick="testLocation(18.5204, 73.8567, 'Pune')">Test Pune</button>
+      </div>
+      
+      <div class="location">
+        <h3>🔬 Chennai</h3>
+        <button onclick="testLocation(13.0827, 80.2707, 'Chennai')">Test Chennai</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="results"></div>
+
+  <script>
+    function calculateDates(daysBack = 30) {
+      const today = new Date()
+      const thisYearEnd = new Date(today)
+      thisYearEnd.setHours(0, 0, 0, 0)
+      // Subtract 5 days for ERA5 delay
+      thisYearEnd.setDate(thisYearEnd.getDate() - 5)
+      
+      const thisYearStart = new Date(thisYearEnd)
+      thisYearStart.setDate(thisYearStart.getDate() - daysBack)
+
+      const lastYearEnd = new Date(thisYearEnd)
+      lastYearEnd.setFullYear(lastYearEnd.getFullYear() - 1)
+      const lastYearStart = new Date(thisYearStart)
+      lastYearStart.setFullYear(lastYearStart.getFullYear() - 1)
+
+      const formatDate = (date) => date.toISOString().split('T')[0]
+
+      return {
+        thisYear: { start: formatDate(thisYearStart), end: formatDate(thisYearEnd) },
+        lastYear: { start: formatDate(lastYearStart), end: formatDate(lastYearEnd) },
+      }
+    }
+
+    async function testLocation(lat, lon, name) {
+      const resultsDiv = document.getElementById('results')
+      const dates = calculateDates(30)
+      
+      const result = document.createElement('div')
+      result.className = 'container'
+      result.innerHTML = `<h2>Testing ${name} (${lat}, ${lon})</h2><p>Loading...</p>`
+      resultsDiv.insertBefore(result, resultsDiv.firstChild)
+
+      try {
+        const thisYearUrl = `https://archive-api.open-meteo.com/v1/archive?latitude=${lat}&longitude=${lon}&start_date=${dates.thisYear.start}&end_date=${dates.thisYear.end}&daily=temperature_2m_max,temperature_2m_min,temperature_2m_mean,precipitation_sum,rain_sum,weather_code&timezone=auto`
+        
+        const lastYearUrl = `https://archive-api.open-meteo.com/v1/archive?latitude=${lat}&longitude=${lon}&start_date=${dates.lastYear.start}&end_date=${dates.lastYear.end}&daily=temperature_2m_max,temperature_2m_min,temperature_2m_mean,precipitation_sum,rain_sum,weather_code&timezone=auto`
+
+        result.innerHTML = `
+          <h2>Testing ${name} (${lat}, ${lon})</h2>
+          <p><strong>Date Ranges:</strong></p>
+          <ul>
+            <li>This Year: ${dates.thisYear.start} to ${dates.thisYear.end}</li>
+            <li>Last Year: ${dates.lastYear.start} to ${dates.lastYear.end}</li>
+          </ul>
+          <p><strong>This Year URL:</strong></p>
+          <div class="url">${thisYearUrl}</div>
+          <p><strong>Last Year URL:</strong></p>
+          <div class="url">${lastYearUrl}</div>
+          <p>Fetching...</p>
+        `
+
+        const [thisYearRes, lastYearRes] = await Promise.all([
+          fetch(thisYearUrl),
+          fetch(lastYearUrl)
+        ])
+
+        const thisYearData = await thisYearRes.json()
+        const lastYearData = await lastYearRes.json()
+
+        const success = thisYearRes.ok && lastYearRes.ok && 
+                       thisYearData.daily && lastYearData.daily &&
+                       thisYearData.daily.temperature_2m_mean &&
+                       lastYearData.daily.temperature_2m_mean
+
+        result.innerHTML = `
+          <h2>${success ? '✅' : '❌'} ${name} (${lat}, ${lon})</h2>
+          <p><strong>Date Ranges:</strong></p>
+          <ul>
+            <li>This Year: ${dates.thisYear.start} to ${dates.thisYear.end}</li>
+            <li>Last Year: ${dates.lastYear.start} to ${dates.lastYear.end}</li>
+          </ul>
+          
+          <h3>This Year Response:</h3>
+          <div class="results ${thisYearRes.ok ? 'success' : 'error'}">
+Status: ${thisYearRes.status} ${thisYearRes.statusText}
+Has daily: ${!!thisYearData.daily}
+Temperature array length: ${thisYearData.daily?.temperature_2m_mean?.length || 0}
+Error: ${thisYearData.error || 'None'}
+Reason: ${thisYearData.reason || 'None'}
+
+Daily keys: ${thisYearData.daily ? Object.keys(thisYearData.daily).join(', ') : 'None'}
+
+Sample temps: ${thisYearData.daily?.temperature_2m_mean?.slice(0, 5).join(', ') || 'None'}
+          </div>
+          
+          <h3>Last Year Response:</h3>
+          <div class="results ${lastYearRes.ok ? 'success' : 'error'}">
+Status: ${lastYearRes.status} ${lastYearRes.statusText}
+Has daily: ${!!lastYearData.daily}
+Temperature array length: ${lastYearData.daily?.temperature_2m_mean?.length || 0}
+Error: ${lastYearData.error || 'None'}
+Reason: ${lastYearData.reason || 'None'}
+
+Daily keys: ${lastYearData.daily ? Object.keys(lastYearData.daily).join(', ') : 'None'}
+
+Sample temps: ${lastYearData.daily?.temperature_2m_mean?.slice(0, 5).join(', ') || 'None'}
+          </div>
+          
+          <details>
+            <summary>Full Response Data</summary>
+            <div class="results">
+This Year:
+${JSON.stringify(thisYearData, null, 2)}
+
+Last Year:
+${JSON.stringify(lastYearData, null, 2)}
+            </div>
+          </details>
+        `
+      } catch (error) {
+        result.innerHTML = `
+          <h2>❌ ${name} - ERROR</h2>
+          <div class="results error">
+${error.message}
+${error.stack}
+          </div>
+        `
+      }
+    }
+
+    // Show instructions
+    document.addEventListener('DOMContentLoaded', () => {
+      const resultsDiv = document.getElementById('results')
+      resultsDiv.innerHTML = `
+        <div class="container">
+          <h2>Instructions</h2>
+          <ol>
+            <li>Click the test buttons above</li>
+            <li>Compare Solapur (working) vs Mumbai/Delhi (failing)</li>
+            <li>Look for differences in:
+              <ul>
+                <li>HTTP status codes</li>
+                <li>Error messages in response</li>
+                <li>Data array lengths</li>
+                <li>Null/missing values</li>
+              </ul>
+            </li>
+            <li>Check if API returns error reason</li>
+            <li>Note any patterns (coordinate-based, date-based, etc.)</li>
+          </ol>
+          <p><strong>What to look for:</strong></p>
+          <ul>
+            <li>Status 200 = Success, 400 = Bad request, 429 = Rate limit, 500 = Server error</li>
+            <li>"error" field in response indicates API-level issue</li>
+            <li>"reason" field explains what went wrong</li>
+            <li>Temperature array should have ~30 values</li>
+            <li>Null/undefined values in data arrays indicate missing data</li>
+          </ul>
+        </div>
+      `
+    })
+  </script>
+</body>
+</html>
