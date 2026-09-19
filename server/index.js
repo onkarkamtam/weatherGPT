@@ -53,10 +53,13 @@ const __dirname = path.dirname(__filename)
 
 const { GEMINI_API_KEY, PORT = 3001 } = process.env
 
-if (!GEMINI_API_KEY || GEMINI_API_KEY === 'your_gemini_api_key_here') {
-  console.error('\n❌ GEMINI_API_KEY is missing or is still the placeholder.')
-  console.error('   Add your key to server/.env → GEMINI_API_KEY=<your_key>')
-  process.exit(1)
+// Only validate on startup, not on import (for Vercel compatibility)
+if (process.env.VERCEL !== '1') {
+  if (!GEMINI_API_KEY || GEMINI_API_KEY === 'your_gemini_api_key_here') {
+    console.error('\n❌ GEMINI_API_KEY is missing or is still the placeholder.')
+    console.error('   Add your key to server/.env → GEMINI_API_KEY=<your_key>')
+    process.exit(1)
+  }
 }
 
 // Initialise the Gen AI client
@@ -494,11 +497,18 @@ if (fs.existsSync(distPath)) {
   })
 }
 
-app.listen(Number(PORT), () => {
-  console.log(`✅ WeatherGPT server → http://localhost:${PORT}`)
-  console.log(`   Primary model: ${PRIMARY_MODEL} (fallbacks: ${FALLBACK_MODELS.join(', ')})`)
+// Only start the server if not being imported (i.e., run directly via loader.js)
+// This allows Vercel to import the app without auto-starting the server
+if (process.env.VERCEL !== '1') {
+  app.listen(Number(PORT), () => {
+    console.log(`✅ WeatherGPT server → http://localhost:${PORT}`)
+    console.log(`   Primary model: ${PRIMARY_MODEL} (fallbacks: ${FALLBACK_MODELS.join(', ')})`)
 
-  if (!fs.existsSync(distPath)) {
-    console.log('   (dist/ not found — production static serving disabled)')
-  }
-})
+    if (!fs.existsSync(distPath)) {
+      console.log('   (dist/ not found — production static serving disabled)')
+    }
+  })
+}
+
+// Export the Express app for Vercel serverless functions
+export default app
