@@ -359,75 +359,98 @@ app.post('/api/chat', optionalAuth, async (req, res) => {
     }
   }
 
-  // ── Return response immediately (don't wait for database) ───────────────────
+  // ── Return response & persist conversation/messages for authenticated users ──
   if (aiResponseText) {
-    const responseData = { 
-      text: aiResponseText,
-      conversationId: conversationId
-    }
-    
-    // Send response to user immediately
-    res.json(responseData)
-    
-    // Save assistant response to database asynchronously (non-blocking)
-    // This happens in the background after user receives response
-    if (conversationId && req.user) {
-      console.log('[/api/chat] Scheduling async save of assistant message')
-      // Use setImmediate/Promise to not block response
-      Promise.resolve().then(async () => {
-        try {
-          console.log('[/api/chat] Saving assistant message to conversation:', conversationId)
-          const { error: msgError } = await supabaseAdmin
-            .from('messages')
+    let targetConversationId = conversationId || null
+
+    if (req.user && supabaseAdmin) {
+      try {
+        // 1. Ensure user profile exists in profiles table
+        if (req.user.email) {
+          await supabaseAdmin
+            .from('profiles')
+            .upsert({ id: req.user.id, email: req.user.email }, { onConflict: 'id' })
+        }
+
+        // 2. If conversationId is provided, verify it exists and belongs to this user
+        if (targetConversationId) {
+          const { data: existingConv } = await supabaseAdmin
+            .from('conversations')
+            .select('id')
+            .eq('id', targetConversationId)
+            .eq('user_id', req.user.id)
+            .maybeSingle()
+
+          if (!existingConv) {
+            console.log('[/api/chat] Conversation ID not found for user, creating new conversation')
+            targetConversationId = null
+          }
+        }
+
+        // 3. If no valid conversation ID, create a new conversation
+        if (!targetConversationId) {
+          const title = generateConversationTitle(userMessage.trim())
+          const { data: newConv, error: createError } = await supabaseAdmin
+            .from('conversations')
             .insert({
-              conversation_id: conversationId,
+              user_id: req.user.id,
+              title: title
+            })
+            .select('id')
+            .single()
+
+          if (createError) {
+            console.error('[/api/chat] ❌ Error creating conversation:', createError)
+          } else if (newConv) {
+            targetConversationId = newConv.id
+            console.log('[/api/chat] ✅ Created new conversation:', targetConversationId)
+          }
+        }
+
+        // 4. Save both user and assistant messages to database
+        if (targetConversationId) {
+          const messagesToInsert = [
+            {
+              conversation_id: targetConversationId,
+              role: 'user',
+              content: userMessage.trim(),
+              location_label: location?.label || null,
+              latitude: location?.lat || null,
+              longitude: location?.lon || null
+            },
+            {
+              conversation_id: targetConversationId,
               role: 'assistant',
               content: aiResponseText,
               location_label: location?.label || null,
               latitude: location?.lat || null,
               longitude: location?.lon || null
-            })
-          
-          if (msgError) {
-            console.error('[/api/chat] Failed to save assistant message:', msgError)
-            console.error('[/api/chat] Assistant message error details:', JSON.stringify(msgError, null, 2))
-            return
-          }
-          
-          console.log('[/api/chat] ✅ Saved assistant message')
-          
-          // Update conversation title if this is the first exchange
-          const { count } = await supabaseAdmin
+            }
+          ]
+
+          const { error: msgError } = await supabaseAdmin
             .from('messages')
-            .select('*', { count: 'exact', head: true })
-            .eq('conversation_id', conversationId)
-          
-          console.log('[/api/chat] Message count in conversation:', count)
-          
-          if (count === 2) { // First user + assistant message
-            const title = generateConversationTitle(userMessage.trim())
-            console.log('[/api/chat] Updating conversation title to:', title)
-            await supabaseAdmin
-              .from('conversations')
-              .update({ title })
-              .eq('id', conversationId)
-            console.log('[/api/chat] ✅ Updated conversation title')
+            .insert(messagesToInsert)
+
+          if (msgError) {
+            console.error('[/api/chat] ❌ Error saving messages:', msgError)
+          } else {
+            console.log('[/api/chat] ✅ Saved user & assistant messages to conversation:', targetConversationId)
           }
-        } catch (dbErr) {
-          console.error('[/api/chat] Background DB save error:', dbErr)
-          console.error('[/api/chat] Background DB save error stack:', dbErr.stack)
         }
-      })
-    } else {
-      if (!conversationId) {
-        console.warn('[/api/chat] No conversationId - skipping assistant message save')
+      } catch (dbErr) {
+        console.error('[/api/chat] Database persistence error:', dbErr)
       }
+    } else {
       if (!req.user) {
-        console.warn('[/api/chat] No authenticated user - skipping assistant message save')
+        console.log('[/api/chat] Unauthenticated request - running without database persistence')
       }
     }
-    
-    return // Response already sent
+
+    return res.json({
+      text: aiResponseText,
+      conversationId: targetConversationId || null
+    })
   }
 
   const message = lastError?.message ?? String(lastError)

@@ -502,7 +502,7 @@ export function isTimePeriodQuery(text) {
   const normalized = text.toLowerCase()
   
   // Time period keywords in multiple languages
-  const periodPatterns = /\b(morning|afternoon|evening|night|सुबह|दोपहर|शाम|रात|सकाळ|दुपार|संध्याकाळ|रात्र|ఉదయం|మధ్యాహ్నం|సాయంత్రం|రాత్రి|காலை|மதியம்|மாலை|இரவு|সকাল|দুপুর|সন্ধ্যা|রাত)\b/i
+  const periodPatterns = /\b(morning|afternoon|evening|night|tonight|overnight|सुबह|दोपहर|शाम|रात|आज\s+रात|सकाळ|दुपार|संध्याकाळ|रात्र|ఉదయం|మధ్యాహ్నం|సాయంత్రం|రాత్రి|காலை|மதியம்|மாலை|இரவு|সকাল|দুপুর|সন্ধ্যা|রাত)\b/i
   
   return periodPatterns.test(normalized)
 }
