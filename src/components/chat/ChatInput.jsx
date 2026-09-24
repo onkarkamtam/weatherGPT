@@ -67,6 +67,12 @@ export default function ChatInput({
   const handleSend = () => {
     const trimmed = value.trim()
     if (!trimmed || disabled) return
+    
+    // Clear any voice errors when successfully sending a message
+    if (voiceError) {
+      setVoiceError(null)
+    }
+    
     onSend(trimmed)
     setValue('')
     // Reset textarea height
@@ -79,6 +85,8 @@ export default function ChatInput({
     // Send on Enter (not Shift+Enter)
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault()
+      // Don't send if still listening (textarea should be disabled, but double-check)
+      if (isListening) return
       handleSend()
     }
   }

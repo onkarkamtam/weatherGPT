@@ -61,6 +61,7 @@ export function useVoiceRecognition({
   
   const recognitionRef = useRef(null)
   const callbacksRef = useRef({ onTranscript, onError })
+  const hadSuccessfulTranscriptRef = useRef(false)
 
   // Update callbacks ref when they change (without reinitializing recognition)
   useEffect(() => {
@@ -86,6 +87,7 @@ export function useVoiceRecognition({
       setIsListening(true)
       setError(null)
       setTranscript('')
+      hadSuccessfulTranscriptRef.current = false
     }
 
     recognition.onresult = (event) => {
@@ -96,6 +98,11 @@ export function useVoiceRecognition({
 
       console.log('[VoiceRecognition] Result:', transcriptText, 'isFinal:', isFinal)
       setTranscript(transcriptText)
+      
+      // Mark that we had a successful transcription
+      if (transcriptText.trim().length > 0) {
+        hadSuccessfulTranscriptRef.current = true
+      }
       
       // Use callback ref to avoid stale closures
       if (callbacksRef.current.onTranscript) {
@@ -115,7 +122,14 @@ export function useVoiceRecognition({
       
       switch (event.error) {
         case 'no-speech':
-          errorMessage = 'No speech detected. Please try speaking again.'
+          // Don't show "no speech" error if we already captured a successful transcript
+          // This prevents the error from appearing when user presses Enter after speech is recognized
+          if (hadSuccessfulTranscriptRef.current) {
+            console.log('[VoiceRecognition] Suppressing no-speech error - transcript was captured')
+            errorMessage = null
+          } else {
+            errorMessage = 'No speech detected. Please try speaking again.'
+          }
           break
         case 'audio-capture':
           errorMessage = 'Microphone not available. Check your device settings.'
@@ -176,6 +190,7 @@ export function useVoiceRecognition({
     try {
       setError(null)
       setTranscript('')
+      hadSuccessfulTranscriptRef.current = false
       console.log('[VoiceRecognition] Attempting to start...')
       recognitionRef.current?.start()
     } catch (err) {
