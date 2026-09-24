@@ -57,6 +57,16 @@ export default function ChatInput({
     }
   }, [transcript])
 
+  // Ensure textarea has focus when listening stops and we have content
+  useEffect(() => {
+    if (!isListening && value && textareaRef.current) {
+      // Small delay to ensure state has updated
+      setTimeout(() => {
+        textareaRef.current?.focus()
+      }, 10)
+    }
+  }, [isListening, value])
+
   // Clear voice error when user starts typing
   useEffect(() => {
     if (value && voiceError) {
@@ -138,6 +148,14 @@ export default function ChatInput({
         <button
           type="button"
           onClick={handleMicClick}
+          onKeyDown={(e) => {
+            // Prevent Enter/Space from activating mic button
+            // Mic should only be activated by explicit click/tap
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault()
+              e.stopPropagation()
+            }
+          }}
           disabled={disabled}
           aria-label={isListening ? 'Stop listening' : 'Start voice input'}
           title={
@@ -176,6 +194,14 @@ export default function ChatInput({
         <button
           type="button"
           onClick={handleSend}
+          onKeyDown={(e) => {
+            // Prevent Enter/Space from activating send button via keyboard
+            // Send should happen via Enter in textarea or explicit click
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault()
+              e.stopPropagation()
+            }
+          }}
           disabled={!canSend}
           aria-label="Send message"
           className={[
