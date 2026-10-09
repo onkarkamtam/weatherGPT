@@ -14,9 +14,9 @@
 import { supabaseClient } from '@/lib/supabase'
 
 const CHAT_ENDPOINT    = '/api/chat'
-// Marathi grounded replies on gemini-3.6-flash measured ~11s with a 450-token cap
-// (thinking + generation). 15s left little headroom and aborted into fallback.
-const REQUEST_TIMEOUT  = 30_000
+// Reduced from 30s to 20s based on measured typical Gemini response times (15-22s)
+// This prevents unnecessary waiting when the service is actually responsive
+const REQUEST_TIMEOUT  = 20_000
 
 /**
  * Custom error type — distinguishes AI failures from weather/network errors.
@@ -220,6 +220,7 @@ If a user asks about weather on other planets or fictional scenarios, acknowledg
 export async function askGemini({ userMessage, history, systemPrompt, conversationId, location, enableGoogleSearch = false }) {
   const controller = new AbortController()
   const timer = setTimeout(() => controller.abort(), REQUEST_TIMEOUT)
+  const startTime = performance.now()
 
   try {
     // Get auth token from Supabase
@@ -250,6 +251,9 @@ export async function askGemini({ userMessage, history, systemPrompt, conversati
       body:    JSON.stringify({ userMessage, history, systemPrompt, conversationId, location, enableGoogleSearch }),
       signal:  controller.signal,
     })
+    
+    const fetchDuration = Math.round(performance.now() - startTime)
+    console.log(`[askGemini] API call took ${fetchDuration}ms`)
 
     if (!res.ok) {
       const body = await res.json().catch(() => ({}))

@@ -399,6 +399,8 @@ export async function fetchCurrentWeather({ lat, lon }) {
  * @throws {WeatherFetchError}
  */
 export async function fetchWeatherContext({ lat, lon }) {
+  const startTime = performance.now()
+  
   if (typeof lat !== 'number' || typeof lon !== 'number') {
     throw new WeatherFetchError(
       'Unable to get weather without location coordinates. Please go back and re-enter your location.'
@@ -433,6 +435,9 @@ export async function fetchWeatherContext({ lat, lon }) {
   let data
   try {
     const res = await fetch(url.toString())
+    const fetchDuration = Math.round(performance.now() - startTime)
+    console.log(`[Weather Service] fetchWeatherContext took ${fetchDuration}ms`)
+    
     if (!res.ok) {
       throw new WeatherFetchError(
         `Unable to fetch weather data (service error ${res.status}). Please try again in a moment.`

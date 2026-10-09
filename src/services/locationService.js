@@ -14,12 +14,18 @@
 
 const GEOCODING_BASE = 'https://geocoding-api.open-meteo.com/v1/search'
 const NOMINATIM_BASE = 'https://nominatim.openstreetmap.org/reverse'
+const GEOCODING_TIMEOUT = 5000 // 5 seconds max for location resolution
+const REVERSE_GEOCODING_TIMEOUT = 8000 // 8 seconds for Nominatim (can be slower)
 
 // Identify app to Nominatim per their usage policy
 const NOMINATIM_HEADERS = {
   'User-Agent': 'WeatherGPT-SIH/1.0 (educational prototype)',
   'Accept-Language': 'en',
 }
+
+// In-memory cache for geocoded locations (session lifetime)
+const geocodeCache = new Map()
+const CACHE_MAX_SIZE = 50
 
 /**
  * Custom error type so callers can distinguish geocoding failures
@@ -45,6 +51,14 @@ export async function geocodePlace(placeName) {
     throw new GeocodingError('Please enter a location name.')
   }
 
+  const normalizedName = placeName.trim().toLowerCase()
+  
+  // Check cache first
+  if (geocodeCache.has(normalizedName)) {
+    console.log('[Geocoding] Cache hit for:', placeName)
+    return geocodeCache.get(normalizedName)
+  }
+
   const url = new URL(GEOCODING_BASE)
   url.searchParams.set('name', placeName.trim())
   url.searchParams.set('count', '1')
@@ -53,12 +67,24 @@ export async function geocodePlace(placeName) {
 
   let data
   try {
-    const res = await fetch(url.toString())
+    const controller = new AbortController()
+    const timeoutId = setTimeout(() => controller.abort(), GEOCODING_TIMEOUT)
+    
+    const startTime = performance.now()
+    const res = await fetch(url.toString(), { signal: controller.signal })
+    clearTimeout(timeoutId)
+    
+    const duration = Math.round(performance.now() - startTime)
+    console.log(`[Geocoding] Forward geocode took ${duration}ms for: ${placeName}`)
+    
     if (!res.ok) {
       throw new GeocodingError(`Unable to search for location (service error ${res.status}). Please try again.`)
     }
     data = await res.json()
   } catch (err) {
+    if (err.name === 'AbortError') {
+      throw new GeocodingError(`Location search timed out after ${GEOCODING_TIMEOUT / 1000}s. Please try again.`)
+    }
     if (err instanceof GeocodingError) throw err
     throw new GeocodingError('Cannot connect to location service. Check your internet connection and try again.')
   }
@@ -82,7 +108,18 @@ export async function geocodePlace(placeName) {
   const parts = [place.name, place.admin1, place.country].filter(Boolean)
   const label = parts.join(', ')
 
-  return { lat, lon, label }
+  const result = { lat, lon, label }
+  
+  // Cache the result
+  geocodeCache.set(normalizedName, result)
+  
+  // Limit cache size (LRU-style: delete oldest entry if full)
+  if (geocodeCache.size > CACHE_MAX_SIZE) {
+    const firstKey = geocodeCache.keys().next().value
+    geocodeCache.delete(firstKey)
+  }
+
+  return result
 }
 
 /**
@@ -97,6 +134,14 @@ export async function geocodePlace(placeName) {
  * @throws {GeocodingError} on network or parse failure (caller should catch + use fallback)
  */
 export async function reverseGeocode(lat, lon) {
+  const cacheKey = `${lat.toFixed(3)},${lon.toFixed(3)}`
+  
+  // Check cache first
+  if (geocodeCache.has(cacheKey)) {
+    console.log('[Geocoding] Reverse geocode cache hit for:', cacheKey)
+    return geocodeCache.get(cacheKey)
+  }
+
   const url = new URL(NOMINATIM_BASE)
   url.searchParams.set('lat', String(lat))
   url.searchParams.set('lon', String(lon))
@@ -106,12 +151,27 @@ export async function reverseGeocode(lat, lon) {
 
   let data
   try {
-    const res = await fetch(url.toString(), { headers: NOMINATIM_HEADERS })
+    const controller = new AbortController()
+    const timeoutId = setTimeout(() => controller.abort(), REVERSE_GEOCODING_TIMEOUT)
+    
+    const startTime = performance.now()
+    const res = await fetch(url.toString(), { 
+      headers: NOMINATIM_HEADERS,
+      signal: controller.signal 
+    })
+    clearTimeout(timeoutId)
+    
+    const duration = Math.round(performance.now() - startTime)
+    console.log(`[Geocoding] Reverse geocode took ${duration}ms`)
+    
     if (!res.ok) {
       throw new GeocodingError(`Unable to identify location name (service error ${res.status}).`)
     }
     data = await res.json()
   } catch (err) {
+    if (err.name === 'AbortError') {
+      throw new GeocodingError(`Reverse geocoding timed out after ${REVERSE_GEOCODING_TIMEOUT / 1000}s.`)
+    }
     if (err instanceof GeocodingError) throw err
     throw new GeocodingError('Cannot determine location name.')
   }
@@ -137,5 +197,14 @@ export async function reverseGeocode(lat, lon) {
   const parts = [city, state, country].filter(Boolean)
   const label = parts.length > 0 ? parts.join(', ') : data.display_name || `${lat.toFixed(3)}, ${lon.toFixed(3)}`
 
-  return { label }
+  const result = { label }
+  
+  // Cache the result
+  geocodeCache.set(cacheKey, result)
+  if (geocodeCache.size > CACHE_MAX_SIZE) {
+    const firstKey = geocodeCache.keys().next().value
+    geocodeCache.delete(firstKey)
+  }
+
+  return result
 }

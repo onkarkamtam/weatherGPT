@@ -891,6 +891,8 @@ export default function ChatScreen() {
   }, [createNewConversation, locationLabel])
 
   const handleSend = useCallback(async (text) => {
+    const overallStartTime = performance.now()
+    
     // 1. Add user message immediately
     addMessage({ id: uid(), role: 'user', text, card: null, timestamp: nowTimestamp() })
 
@@ -933,14 +935,19 @@ export default function ChatScreen() {
     
     // If user mentioned a specific city, resolve it to coordinates
     if (explicitLocationName && (isWeather || isIMD || isTimePeriod)) {
+      const geocodeStartTime = performance.now()
       try {
         console.log('[WeatherGPT] Explicit location detected:', explicitLocationName)
         const resolved = await geocodePlace(explicitLocationName)
+        const geocodeDuration = Math.round(performance.now() - geocodeStartTime)
+        console.log(`[WeatherGPT] Geocoding took ${geocodeDuration}ms`)
+        
         queryLocation = resolved
         conversationLocationRef.current = resolved // Remember for follow-ups
         console.log('[WeatherGPT] Resolved to:', resolved.label, `(${resolved.lat}, ${resolved.lon})`)
       } catch (err) {
-        console.warn('[WeatherGPT] Could not resolve explicit location:', explicitLocationName, err.message)
+        const geocodeDuration = Math.round(performance.now() - geocodeStartTime)
+        console.warn(`[WeatherGPT] Could not resolve explicit location (${geocodeDuration}ms):`, explicitLocationName, err.message)
         // Fall back to UI location or conversation location
         queryLocation = conversationLocationRef.current || locationState
       }
@@ -1211,6 +1218,7 @@ export default function ChatScreen() {
     // 7. Resolve response (AI with grounded prompt, or historical, or hourly period, or fallback)
     // Pass QUERY LOCATION (not UI location) so AI knows what location was requested
     console.log('[WeatherGPT DEBUG] 🔄 Step 7: Calling resolveResponseWithAI...')
+    const aiStartTime = performance.now()
     let response
     try {
       response = await resolveResponseWithAI(
@@ -1224,6 +1232,10 @@ export default function ChatScreen() {
         activeConversationId, // Pass current conversation ID
         hourlyPeriodData, // Pass hourly period data if available
       )
+      const aiDuration = Math.round(performance.now() - aiStartTime)
+      const overallDuration = Math.round(performance.now() - overallStartTime)
+      console.log(`[WeatherGPT] AI response took ${aiDuration}ms`)
+      console.log(`[WeatherGPT] ========== TOTAL REQUEST: ${overallDuration}ms ==========`)
       console.log('[WeatherGPT DEBUG] âœ… Step 7: resolveResponseWithAI returned successfully')
       console.log('[WeatherGPT DEBUG] Response text length:', response?.text?.length)
       console.log('[WeatherGPT DEBUG] Response card type:', response?.card?.type)
