@@ -1,0 +1,125 @@
+{
+  "timestamp": "2026-10-09T07:48:37.111Z",
+  "tests": [
+    {
+      "category": "Historical",
+      "test": "Intent Detection",
+      "status": "VERIFIED",
+      "details": "Correctly identified as historical comparison",
+      "timestamp": "2026-10-09T07:48:37.117Z"
+    },
+    {
+      "category": "Historical",
+      "test": "Date Range",
+      "status": "VERIFIED",
+      "details": "This year: 31 days, Last year: 31 days (expected ~30 days)",
+      "timestamp": "2026-10-09T07:48:37.776Z"
+    },
+    {
+      "category": "Historical",
+      "test": "Data Aggregation",
+      "status": "VERIFIED",
+      "details": "This year: 28°C avg, 172.9mm total. Last year: 26°C avg, 473mm total. Diff: 2°C, -300.1mm",
+      "timestamp": "2026-10-09T07:48:37.777Z"
+    },
+    {
+      "category": "Historical",
+      "test": "Output Format",
+      "status": "VERIFIED",
+      "details": "Card structure complete with trend: warmer",
+      "timestamp": "2026-10-09T07:48:37.777Z"
+    },
+    {
+      "category": "Climate Trend",
+      "test": "Intent Detection",
+      "status": "VERIFIED",
+      "details": "Correctly identified as climate trend",
+      "timestamp": "2026-10-09T07:48:37.778Z"
+    },
+    {
+      "category": "Climate Trend",
+      "test": "Date Range",
+      "status": "VERIFIED",
+      "details": "Period: 2021-2025 (5 years)",
+      "timestamp": "2026-10-09T07:48:38.262Z"
+    },
+    {
+      "category": "Climate Trend",
+      "test": "Data Coverage",
+      "status": "VERIFIED",
+      "details": "5/5 years of data available",
+      "timestamp": "2026-10-09T07:48:38.262Z"
+    },
+    {
+      "category": "Climate Trend",
+      "test": "Trend Calculation",
+      "status": "VERIFIED",
+      "details": "Temp: 0.08°C/year (stable), Precip: 18mm/year (increasing)",
+      "timestamp": "2026-10-09T07:48:38.262Z"
+    },
+    {
+      "category": "Climate Trend",
+      "test": "Chart Data",
+      "status": "VERIFIED",
+      "details": "5 years of chart-ready data",
+      "timestamp": "2026-10-09T07:48:38.262Z"
+    },
+    {
+      "category": "Climate Trend",
+      "test": "Summary Stats",
+      "status": "VERIFIED",
+      "details": "Coldest: 2023 (24.4°C), Hottest: 2022 (25.1°C)",
+      "timestamp": "2026-10-09T07:48:38.262Z"
+    },
+    {
+      "category": "NWP Comparison",
+      "test": "Intent Detection",
+      "status": "VERIFIED",
+      "details": "Correctly identified as NWP comparison",
+      "timestamp": "2026-10-09T07:48:38.263Z"
+    },
+    {
+      "category": "NWP Comparison",
+      "test": "Model Availability",
+      "status": "PARTIAL",
+      "details": "GFS: MISSING, ECMWF: MISSING",
+      "timestamp": "2026-10-09T07:48:38.264Z"
+    },
+    {
+      "category": "NWP Comparison",
+      "test": "Source Attribution",
+      "status": "FAILED",
+      "details": "Missing source attribution for one or both models",
+      "timestamp": "2026-10-09T07:48:38.264Z"
+    },
+    {
+      "category": "NWP Comparison",
+      "test": "Forecast Data",
+      "status": "FAILED",
+      "details": "Missing hourly forecast data for one or both models",
+      "timestamp": "2026-10-09T07:48:38.264Z"
+    },
+    {
+      "category": "IMD Warnings",
+      "test": "Live Testing",
+      "status": "BLOCKED",
+      "details": "IMD CAP feed requires live API access - tested separately with verify-specialized-apis.mjs",
+      "timestamp": "2026-10-09T07:48:38.265Z"
+    },
+    {
+      "category": "Multilingual",
+      "test": "Response Generation",
+      "status": "NOT TESTED",
+      "details": "Requires Gemini AI integration and cannot be tested without API key in automated script. Intent detection verified in batch tests (1,755 scenarios). Response preservation requires browser testing.",
+      "timestamp": "2026-10-09T07:48:38.265Z"
+    }
+  ],
+  "summary": {
+    "total": 16,
+    "verified": 11,
+    "partial": 1,
+    "blocked": 1,
+    "failed": 2,
+    "not tested": null
+  }
+}
