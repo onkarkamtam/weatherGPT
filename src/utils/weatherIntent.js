@@ -51,7 +51,7 @@ const DIRECT_WEATHER_INDIAN = [
  *   going\s+to\s+need, am\s+i\s+going, plan(?:ning)?\s+to\s+go,
  *   thinking\s+of\s+going, ok\s+to, okay\s+to
  */
-const ADVICE_FRAME_EN = /\b(should\s+i|shall\s+i|do\s+i\s+need|do\s+i\s+have\s+to|need\s+to|can\s+i|could\s+i|may\s+i|is\s+it\s+safe|safe\s+to|is\s+it\s+(ok|okay|fine|good)|good\s+day\s+for|good\s+idea\s+to|postpone|worth\s+(it|going)|wear|carry|take|suitable\s+for|good\s+for|good\s+time\s+to|right\s+(time|day)|would\s+it\s+be\s+(ok|okay|fine|safe|alright)|going\s+to\s+need|am\s+i\s+going|plan(?:ning)?\s+to\s+go|thinking\s+of\s+going|ok\s+to|okay\s+to)\b/i
+const ADVICE_FRAME_EN = /\b(should\s+i|shall\s+i|do\s+i\s+need|do\s+i\s+have\s+to|need\s+to|can\s+i|could\s+i|may\s+i|is\s+it\s+safe|safe\s+to|is\s+it\s+(ok|okay|fine|good)|good\s+day\s+for|good\s+idea\s+to|postpone|worth\s+(it|going)|wear|carry|take|suitable\s+for|good\s+for|good\s+time\s+(to|for)|right\s+(time|day)|would\s+it\s+be\s+(ok|okay|fine|safe|alright)|going\s+to\s+need|am\s+i\s+going|plan(?:ning)?\s+to\s+go|thinking\s+of\s+going|ok\s+to|okay\s+to)\b/i
 
 /** Going out, travel, sport, or dressing for the elements / sun. */
 const OUTDOOR_TOPIC_EN = /\b(outside|outdoors|outdoor|go\s+out|going\s+out|go\s+outside|step(?:ping)?\s+out|raincoat|rain\s*coat|jacket|coat|sweater|hoodie|dress|clothes|clothing|outfit|wear|wearing|sunscreen|sun\s*screen|sunblock|hat|cap|cricket|football|soccer|tennis|badminton|picnic|trek(?:king)?|hike|hiking|cycling|bike|bicycle|walk(?:ing)?|jog(?:ging)?|run(?:ning)?|swim(?:ming)?|travel(?:ling|ing)?|trip|commute|drive|driving|journey|flight|outdoor\s+event|garden(?:ing)?|farm(?:ing)?)\b/i
