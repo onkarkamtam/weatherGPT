@@ -1,0 +1,414 @@
+{
+  "totalTests": 1755,
+  "byStatus": {
+    "NOT_RUN": 1755
+  },
+  "byJurisdiction": {
+    "Andhra Pradesh": {
+      "total": 52,
+      "passed": 0,
+      "failed": 0,
+      "partial": 0,
+      "blocked": 0,
+      "notRun": 0,
+      "notrun": null
+    },
+    "Arunachal Pradesh": {
+      "total": 52,
+      "passed": 0,
+      "failed": 0,
+      "partial": 0,
+      "blocked": 0,
+      "notRun": 0,
+      "notrun": null
+    },
+    "Assam": {
+      "total": 52,
+      "passed": 0,
+      "failed": 0,
+      "partial": 0,
+      "blocked": 0,
+      "notRun": 0,
+      "notrun": null
+    },
+    "Bihar": {
+      "total": 52,
+      "passed": 0,
+      "failed": 0,
+      "partial": 0,
+      "blocked": 0,
+      "notRun": 0,
+      "notrun": null
+    },
+    "Chhattisgarh": {
+      "total": 52,
+      "passed": 0,
+      "failed": 0,
+      "partial": 0,
+      "blocked": 0,
+      "notRun": 0,
+      "notrun": null
+    },
+    "Goa": {
+      "total": 52,
+      "passed": 0,
+      "failed": 0,
+      "partial": 0,
+      "blocked": 0,
+      "notRun": 0,
+      "notrun": null
+    },
+    "Gujarat": {
+      "total": 52,
+      "passed": 0,
+      "failed": 0,
+      "partial": 0,
+      "blocked": 0,
+      "notRun": 0,
+      "notrun": null
+    },
+    "Haryana": {
+      "total": 52,
+      "passed": 0,
+      "failed": 0,
+      "partial": 0,
+      "blocked": 0,
+      "notRun": 0,
+      "notrun": null
+    },
+    "Himachal Pradesh": {
+      "total": 52,
+      "passed": 0,
+      "failed": 0,
+      "partial": 0,
+      "blocked": 0,
+      "notRun": 0,
+      "notrun": null
+    },
+    "Jharkhand": {
+      "total": 52,
+      "passed": 0,
+      "failed": 0,
+      "partial": 0,
+      "blocked": 0,
+      "notRun": 0,
+      "notrun": null
+    },
+    "Karnataka": {
+      "total": 52,
+      "passed": 0,
+      "failed": 0,
+      "partial": 0,
+      "blocked": 0,
+      "notRun": 0,
+      "notrun": null
+    },
+    "Kerala": {
+      "total": 52,
+      "passed": 0,
+      "failed": 0,
+      "partial": 0,
+      "blocked": 0,
+      "notRun": 0,
+      "notrun": null
+    },
+    "Madhya Pradesh": {
+      "total": 52,
+      "passed": 0,
+      "failed": 0,
+      "partial": 0,
+      "blocked": 0,
+      "notRun": 0,
+      "notrun": null
+    },
+    "Maharashtra": {
+      "total": 65,
+      "passed": 0,
+      "failed": 0,
+      "partial": 0,
+      "blocked": 0,
+      "notRun": 0,
+      "notrun": null
+    },
+    "Manipur": {
+      "total": 52,
+      "passed": 0,
+      "failed": 0,
+      "partial": 0,
+      "blocked": 0,
+      "notRun": 0,
+      "notrun": null
+    },
+    "Meghalaya": {
+      "total": 52,
+      "passed": 0,
+      "failed": 0,
+      "partial": 0,
+      "blocked": 0,
+      "notRun": 0,
+      "notrun": null
+    },
+    "Mizoram": {
+      "total": 52,
+      "passed": 0,
+      "failed": 0,
+      "partial": 0,
+      "blocked": 0,
+      "notRun": 0,
+      "notrun": null
+    },
+    "Nagaland": {
+      "total": 52,
+      "passed": 0,
+      "failed": 0,
+      "partial": 0,
+      "blocked": 0,
+      "notRun": 0,
+      "notrun": null
+    },
+    "Odisha": {
+      "total": 52,
+      "passed": 0,
+      "failed": 0,
+      "partial": 0,
+      "blocked": 0,
+      "notRun": 0,
+      "notrun": null
+    },
+    "Punjab": {
+      "total": 52,
+      "passed": 0,
+      "failed": 0,
+      "partial": 0,
+      "blocked": 0,
+      "notRun": 0,
+      "notrun": null
+    },
+    "Rajasthan": {
+      "total": 52,
+      "passed": 0,
+      "failed": 0,
+      "partial": 0,
+      "blocked": 0,
+      "notRun": 0,
+      "notrun": null
+    },
+    "Sikkim": {
+      "total": 52,
+      "passed": 0,
+      "failed": 0,
+      "partial": 0,
+      "blocked": 0,
+      "notRun": 0,
+      "notrun": null
+    },
+    "Tamil Nadu": {
+      "total": 52,
+      "passed": 0,
+      "failed": 0,
+      "partial": 0,
+      "blocked": 0,
+      "notRun": 0,
+      "notrun": null
+    },
+    "Telangana": {
+      "total": 52,
+      "passed": 0,
+      "failed": 0,
+      "partial": 0,
+      "blocked": 0,
+      "notRun": 0,
+      "notrun": null
+    },
+    "Tripura": {
+      "total": 52,
+      "passed": 0,
+      "failed": 0,
+      "partial": 0,
+      "blocked": 0,
+      "notRun": 0,
+      "notrun": null
+    },
+    "Uttar Pradesh": {
+      "total": 65,
+      "passed": 0,
+      "failed": 0,
+      "partial": 0,
+      "blocked": 0,
+      "notRun": 0,
+      "notrun": null
+    },
+    "Uttarakhand": {
+      "total": 52,
+      "passed": 0,
+      "failed": 0,
+      "partial": 0,
+      "blocked": 0,
+      "notRun": 0,
+      "notrun": null
+    },
+    "West Bengal": {
+      "total": 52,
+      "passed": 0,
+      "failed": 0,
+      "partial": 0,
+      "blocked": 0,
+      "notRun": 0,
+      "notrun": null
+    },
+    "Andaman and Nicobar Islands": {
+      "total": 39,
+      "passed": 0,
+      "failed": 0,
+      "partial": 0,
+      "blocked": 0,
+      "notRun": 0,
+      "notrun": null
+    },
+    "Chandigarh": {
+      "total": 13,
+      "passed": 0,
+      "failed": 0,
+      "partial": 0,
+      "blocked": 0,
+      "notRun": 0,
+      "notrun": null
+    },
+    "Dadra and Nagar Haveli and Daman and Diu": {
+      "total": 39,
+      "passed": 0,
+      "failed": 0,
+      "partial": 0,
+      "blocked": 0,
+      "notRun": 0,
+      "notrun": null
+    },
+    "Delhi": {
+      "total": 26,
+      "passed": 0,
+      "failed": 0,
+      "partial": 0,
+      "blocked": 0,
+      "notRun": 0,
+      "notrun": null
+    },
+    "Jammu and Kashmir": {
+      "total": 52,
+      "passed": 0,
+      "failed": 0,
+      "partial": 0,
+      "blocked": 0,
+      "notRun": 0,
+      "notrun": null
+    },
+    "Ladakh": {
+      "total": 26,
+      "passed": 0,
+      "failed": 0,
+      "partial": 0,
+      "blocked": 0,
+      "notRun": 0,
+      "notrun": null
+    },
+    "Lakshadweep": {
+      "total": 39,
+      "passed": 0,
+      "failed": 0,
+      "partial": 0,
+      "blocked": 0,
+      "notRun": 0,
+      "notrun": null
+    },
+    "Puducherry": {
+      "total": 39,
+      "passed": 0,
+      "failed": 0,
+      "partial": 0,
+      "blocked": 0,
+      "notRun": 0,
+      "notrun": null
+    }
+  },
+  "byScenario": {
+    "Current Weather": {
+      "total": 135,
+      "passed": 0,
+      "failed": 0
+    },
+    "Tomorrow Forecast": {
+      "total": 135,
+      "passed": 0,
+      "failed": 0
+    },
+    "Umbrella with Context": {
+      "total": 135,
+      "passed": 0,
+      "failed": 0
+    },
+    "Agriculture Advisory": {
+      "total": 135,
+      "passed": 0,
+      "failed": 0
+    },
+    "Outdoor Activity": {
+      "total": 135,
+      "passed": 0,
+      "failed": 0
+    },
+    "Umbrella without Context": {
+      "total": 135,
+      "passed": 0,
+      "failed": 0
+    },
+    "Hindi Query": {
+      "total": 135,
+      "passed": 0,
+      "failed": 0
+    },
+    "Marathi Query": {
+      "total": 135,
+      "passed": 0,
+      "failed": 0
+    },
+    "Telugu Query": {
+      "total": 135,
+      "passed": 0,
+      "failed": 0
+    },
+    "Voice Input": {
+      "total": 135,
+      "passed": 0,
+      "failed": 0
+    },
+    "5-Year Temperature Trend": {
+      "total": 135,
+      "passed": 0,
+      "failed": 0
+    },
+    "NWP Model Comparison": {
+      "total": 135,
+      "passed": 0,
+      "failed": 0
+    },
+    "IMD Official Warning": {
+      "total": 135,
+      "passed": 0,
+      "failed": 0
+    }
+  },
+  "byCategory": {},
+  "performance": {
+    "medianResponseTime": null,
+    "p95ResponseTime": null,
+    "slowestTests": []
+  },
+  "coverage": {
+    "states": {},
+    "uts": {},
+    "cities": {},
+    "statesCount": 28,
+    "utsCount": 8,
+    "citiesCount": 133
+  },
+  "failures": []
+}

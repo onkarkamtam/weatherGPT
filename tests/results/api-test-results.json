@@ -1,0 +1,211 @@
+{
+  "timestamp": "2026-10-09T06:15:38.790Z",
+  "intentDetection": [
+    {
+      "city": "Pune",
+      "query": "What is the weather in Pune right now?",
+      "expected": "weather",
+      "detected": "weather",
+      "status": "PASS"
+    },
+    {
+      "city": "Mumbai",
+      "query": "Compare the GFS GRAPES and ECMWF IFS forecasts for Mumbai for the next 3 days.",
+      "expected": "nwp",
+      "detected": "nwp",
+      "status": "PASS"
+    },
+    {
+      "city": "Delhi",
+      "query": "What is the latest official IMD weather warning for Delhi?",
+      "expected": "imd",
+      "detected": "imd",
+      "status": "PASS"
+    },
+    {
+      "city": "Bangalore",
+      "query": "What is the temperature trend in Bangalore over the past 5 years?",
+      "expected": "historical",
+      "detected": "historical",
+      "status": "PASS"
+    }
+  ],
+  "geocoding": [
+    {
+      "city": "Pune",
+      "status": "PASS",
+      "coordinates": {
+        "lat": 18.51957,
+        "lon": 73.85535
+      },
+      "fullName": "Pune, Maharashtra, India"
+    },
+    {
+      "city": "Mumbai",
+      "status": "PASS",
+      "coordinates": {
+        "lat": 19.07283,
+        "lon": 72.88261
+      },
+      "fullName": "Mumbai, Maharashtra, India"
+    },
+    {
+      "city": "Delhi",
+      "status": "PASS",
+      "coordinates": {
+        "lat": 28.65195,
+        "lon": 77.23149
+      },
+      "fullName": "Delhi, National Capital Territory of Delhi, India"
+    },
+    {
+      "city": "Bangalore",
+      "status": "PASS",
+      "coordinates": {
+        "lat": 24.8717,
+        "lon": 67.0839
+      },
+      "fullName": "Bangalore Town, Sindh, Pakistan"
+    },
+    {
+      "city": "Chennai",
+      "status": "PASS",
+      "coordinates": {
+        "lat": 13.08784,
+        "lon": 80.27847
+      },
+      "fullName": "Chennai, Tamil Nadu, India"
+    },
+    {
+      "city": "Kolkata",
+      "status": "PASS",
+      "coordinates": {
+        "lat": 22.56263,
+        "lon": 88.36304
+      },
+      "fullName": "Kolkata, West Bengal, India"
+    },
+    {
+      "city": "Jaipur",
+      "status": "PASS",
+      "coordinates": {
+        "lat": 26.91962,
+        "lon": 75.78781
+      },
+      "fullName": "Jaipur, Rajasthan, India"
+    },
+    {
+      "city": "Srinagar",
+      "status": "PASS",
+      "coordinates": {
+        "lat": 34.08565,
+        "lon": 74.80555
+      },
+      "fullName": "Srinagar, Jammu and Kashmir, India"
+    }
+  ],
+  "weatherAPI": [
+    {
+      "city": "Pune",
+      "status": "PASS",
+      "duration": 711,
+      "data": {
+        "temperature": 32.7,
+        "humidity": 33,
+        "weatherCode": 1,
+        "forecastDays": 3
+      }
+    },
+    {
+      "city": "Mumbai",
+      "status": "PASS",
+      "duration": 140,
+      "data": {
+        "temperature": 36.5,
+        "humidity": 32,
+        "weatherCode": 0,
+        "forecastDays": 3
+      }
+    },
+    {
+      "city": "Delhi",
+      "status": "PASS",
+      "duration": 153,
+      "data": {
+        "temperature": 31.1,
+        "humidity": 54,
+        "weatherCode": 51,
+        "forecastDays": 3
+      }
+    },
+    {
+      "city": "Bangalore",
+      "status": "PASS",
+      "duration": 205,
+      "data": {
+        "temperature": 30.5,
+        "humidity": 63,
+        "weatherCode": 3,
+        "forecastDays": 3
+      }
+    },
+    {
+      "city": "Chennai",
+      "status": "PASS",
+      "duration": 135,
+      "data": {
+        "temperature": 33.2,
+        "humidity": 53,
+        "weatherCode": 0,
+        "forecastDays": 3
+      }
+    },
+    {
+      "city": "Kolkata",
+      "status": "PASS",
+      "duration": 170,
+      "data": {
+        "temperature": 30.9,
+        "humidity": 54,
+        "weatherCode": 53,
+        "forecastDays": 3
+      }
+    },
+    {
+      "city": "Jaipur",
+      "status": "PASS",
+      "duration": 135,
+      "data": {
+        "temperature": 32.7,
+        "humidity": 28,
+        "weatherCode": 0,
+        "forecastDays": 3
+      }
+    },
+    {
+      "city": "Srinagar",
+      "status": "PASS",
+      "duration": 140,
+      "data": {
+        "temperature": 20.3,
+        "humidity": 49,
+        "weatherCode": 0,
+        "forecastDays": 3
+      }
+    }
+  ],
+  "summary": {
+    "intentDetection": {
+      "passed": 4,
+      "total": 4
+    },
+    "geocoding": {
+      "passed": 8,
+      "total": 8
+    },
+    "weatherAPI": {
+      "passed": 8,
+      "total": 8
+    }
+  }
+}

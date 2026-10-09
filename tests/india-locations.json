@@ -1,0 +1,189 @@
+{
+  "states": {
+    "Andhra Pradesh": {
+      "cities": ["Visakhapatnam", "Vijayawada", "Tirupati", "Kakinada"],
+      "geography": ["coastal", "inland"],
+      "languages": ["te", "en"]
+    },
+    "Arunachal Pradesh": {
+      "cities": ["Itanagar", "Tawang", "Ziro", "Bomdila"],
+      "geography": ["mountainous"],
+      "languages": ["en"]
+    },
+    "Assam": {
+      "cities": ["Guwahati", "Dibrugarh", "Silchar", "Jorhat"],
+      "geography": ["plains", "river valley"],
+      "languages": ["as", "en"]
+    },
+    "Bihar": {
+      "cities": ["Patna", "Gaya", "Bhagalpur", "Muzaffarpur"],
+      "geography": ["plains"],
+      "languages": ["hi", "en"]
+    },
+    "Chhattisgarh": {
+      "cities": ["Raipur", "Bilaspur", "Durg", "Korba"],
+      "geography": ["inland", "forest"],
+      "languages": ["hi", "en"]
+    },
+    "Goa": {
+      "cities": ["Panaji", "Margao", "Vasco da Gama", "Mapusa"],
+      "geography": ["coastal"],
+      "languages": ["en"]
+    },
+    "Gujarat": {
+      "cities": ["Ahmedabad", "Surat", "Vadodara", "Rajkot"],
+      "geography": ["coastal", "inland", "desert"],
+      "languages": ["gu", "en"]
+    },
+    "Haryana": {
+      "cities": ["Gurugram", "Faridabad", "Panipat", "Ambala"],
+      "geography": ["plains"],
+      "languages": ["hi", "en"]
+    },
+    "Himachal Pradesh": {
+      "cities": ["Shimla", "Manali", "Dharamshala", "Kullu"],
+      "geography": ["mountainous"],
+      "languages": ["hi", "en"]
+    },
+    "Jharkhand": {
+      "cities": ["Ranchi", "Jamshedpur", "Dhanbad", "Bokaro"],
+      "geography": ["inland", "plateau"],
+      "languages": ["hi", "en"]
+    },
+    "Karnataka": {
+      "cities": ["Bengaluru", "Mysuru", "Mangaluru", "Hubballi"],
+      "geography": ["inland", "coastal", "plateau"],
+      "languages": ["kn", "en"]
+    },
+    "Kerala": {
+      "cities": ["Thiruvananthapuram", "Kochi", "Kozhikode", "Thrissur"],
+      "geography": ["coastal", "mountainous"],
+      "languages": ["ml", "en"]
+    },
+    "Madhya Pradesh": {
+      "cities": ["Bhopal", "Indore", "Jabalpur", "Gwalior"],
+      "geography": ["inland", "plateau"],
+      "languages": ["hi", "en"]
+    },
+    "Maharashtra": {
+      "cities": ["Mumbai", "Pune", "Nagpur", "Nashik", "Pandharpur"],
+      "geography": ["coastal", "inland", "plateau"],
+      "languages": ["mr", "en"]
+    },
+    "Manipur": {
+      "cities": ["Imphal", "Thoubal", "Bishnupur", "Churachandpur"],
+      "geography": ["hills"],
+      "languages": ["en"]
+    },
+    "Meghalaya": {
+      "cities": ["Shillong", "Tura", "Cherrapunji", "Jowai"],
+      "geography": ["hills"],
+      "languages": ["en"]
+    },
+    "Mizoram": {
+      "cities": ["Aizawl", "Lunglei", "Champhai", "Serchhip"],
+      "geography": ["hills"],
+      "languages": ["en"]
+    },
+    "Nagaland": {
+      "cities": ["Kohima", "Dimapur", "Mokokchung", "Tuensang"],
+      "geography": ["hills"],
+      "languages": ["en"]
+    },
+    "Odisha": {
+      "cities": ["Bhubaneswar", "Cuttack", "Puri", "Rourkela"],
+      "geography": ["coastal", "inland"],
+      "languages": ["or", "en"]
+    },
+    "Punjab": {
+      "cities": ["Chandigarh", "Ludhiana", "Amritsar", "Jalandhar"],
+      "geography": ["plains"],
+      "languages": ["pa", "en"]
+    },
+    "Rajasthan": {
+      "cities": ["Jaipur", "Jodhpur", "Udaipur", "Bikaner"],
+      "geography": ["desert", "inland"],
+      "languages": ["hi", "en"]
+    },
+    "Sikkim": {
+      "cities": ["Gangtok", "Namchi", "Gyalshing", "Mangan"],
+      "geography": ["mountainous"],
+      "languages": ["en"]
+    },
+    "Tamil Nadu": {
+      "cities": ["Chennai", "Coimbatore", "Madurai", "Tiruchirappalli"],
+      "geography": ["coastal", "inland"],
+      "languages": ["ta", "en"]
+    },
+    "Telangana": {
+      "cities": ["Hyderabad", "Warangal", "Nizamabad", "Khammam"],
+      "geography": ["inland", "plateau"],
+      "languages": ["te", "en"]
+    },
+    "Tripura": {
+      "cities": ["Agartala", "Udaipur", "Dharmanagar", "Kailasahar"],
+      "geography": ["hills"],
+      "languages": ["en"]
+    },
+    "Uttar Pradesh": {
+      "cities": ["Lucknow", "Kanpur", "Varanasi", "Agra", "Noida"],
+      "geography": ["plains"],
+      "languages": ["hi", "en"]
+    },
+    "Uttarakhand": {
+      "cities": ["Dehradun", "Haridwar", "Nainital", "Rishikesh"],
+      "geography": ["mountainous", "plains"],
+      "languages": ["hi", "en"]
+    },
+    "West Bengal": {
+      "cities": ["Kolkata", "Darjeeling", "Siliguri", "Durgapur"],
+      "geography": ["coastal", "plains", "mountainous"],
+      "languages": ["bn", "en"]
+    }
+  },
+  "unionTerritories": {
+    "Andaman and Nicobar Islands": {
+      "cities": ["Port Blair", "Diglipur", "Car Nicobar"],
+      "geography": ["island", "coastal"],
+      "languages": ["en"]
+    },
+    "Chandigarh": {
+      "cities": ["Chandigarh"],
+      "geography": ["inland"],
+      "languages": ["hi", "pa", "en"]
+    },
+    "Dadra and Nagar Haveli and Daman and Diu": {
+      "cities": ["Daman", "Diu", "Silvassa"],
+      "geography": ["coastal", "inland"],
+      "languages": ["en"]
+    },
+    "Delhi": {
+      "cities": ["New Delhi", "Delhi"],
+      "geography": ["inland"],
+      "languages": ["hi", "en"]
+    },
+    "Jammu and Kashmir": {
+      "cities": ["Srinagar", "Jammu", "Anantnag", "Baramulla"],
+      "geography": ["mountainous", "inland"],
+      "languages": ["en"]
+    },
+    "Ladakh": {
+      "cities": ["Leh", "Kargil"],
+      "geography": ["high-altitude", "mountainous"],
+      "languages": ["en"]
+    },
+    "Lakshadweep": {
+      "cities": ["Kavaratti", "Agatti", "Minicoy"],
+      "geography": ["island", "coastal"],
+      "languages": ["en"]
+    },
+    "Puducherry": {
+      "cities": ["Puducherry", "Karaikal", "Yanam"],
+      "geography": ["coastal"],
+      "languages": ["ta", "en"]
+    }
+  },
+  "totalLocations": 151,
+  "totalStates": 28,
+  "totalUTs": 8
+}

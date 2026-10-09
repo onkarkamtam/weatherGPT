@@ -194,7 +194,7 @@ export function isHistoricalWeatherIntent(text) {
     /(warmer|cooler|hotter|colder|wetter|drier).*than\s+last\s+year/i,
     /how.*weather.*changed/i,
     /weather.*different.*last\s+year/i,
-    // Additional patterns ? previous year(s), same period, today vs history
+    // Additional patterns – previous year(s), same period, today vs history
     /compare.*previous\s+years?/i,
     /previous\s+years?.*compare/i,
     /same\s+period.*previous\s+years?/i,
@@ -207,6 +207,16 @@ export function isHistoricalWeatherIntent(text) {
     /this\s+(time|period).*last\s+year/i,
     /year[\s-]+over[\s-]+year/i,
     /year\s+on\s+year/i,
+    // Patterns for "over/past X years" and "trend" queries
+    /(over|past|last)\s+(the\s+)?(past|last)?\s*\d+\s+years?/i,
+    /temperature\s+trend/i,
+    /rainfall\s+trend/i,
+    /weather\s+trend/i,
+    /trend.*over.*years?/i,
+    /trend.*past.*years?/i,
+    /\d+[-\s]year.*trend/i,
+    /\d+[-\s]year.*comparison/i,
+    /\d+[-\s]year.*history/i,
   ]
   
   return historicalPhrases.some((pattern) => pattern.test(trimmed))
