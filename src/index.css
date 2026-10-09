@@ -59,13 +59,20 @@
     display: none;
   }
 
-  /* Chat message typing dots */
+  /* Chat message typing dots - smooth sinusoidal wave animation */
   .typing-dot {
     @apply w-2 h-2 bg-sky-400 rounded-full inline-block;
-    animation: bounceDot 1.2s ease-in-out infinite;
+    animation: bounceDot 1.4s ease-in-out infinite;
   }
   .typing-dot:nth-child(2) { animation-delay: 0.2s; }
   .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+  
+  /* Respect reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    .typing-dot {
+      animation: pulse 2s ease-in-out infinite;
+    }
+  }
 
   /* Gradient text */
   .gradient-text {

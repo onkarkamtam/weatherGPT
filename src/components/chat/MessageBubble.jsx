@@ -135,11 +135,11 @@ export default function MessageBubble({ message }) {
                 {message.loadingMessage}
               </p>
             )}
-            <div className="chat-bubble bg-white border border-slate-100 shadow-input rounded-tl-sm">
+            <div className="chat-bubble bg-white border border-slate-100 shadow-input rounded-tl-sm" role="status" aria-live="polite" aria-label="WeatherGPT is thinking">
               <div className="flex gap-1 items-center h-4">
-                <span className="typing-dot" />
-                <span className="typing-dot" />
-                <span className="typing-dot" />
+                <span className="typing-dot" aria-hidden="true" />
+                <span className="typing-dot" aria-hidden="true" />
+                <span className="typing-dot" aria-hidden="true" />
               </div>
             </div>
           </div>

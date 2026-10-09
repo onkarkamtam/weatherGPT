@@ -66,25 +66,18 @@ ${customContext}
 STRICT RULES — follow without exception:
 1. Use ONLY the values above for any weather claim. Never estimate, round differently, or fabricate figures.
 2. The user will SEE a visual weather card displaying the forecast data shown above.
-3. DO NOT restate these exact numbers in your reply — the user can already see them on the card.
-4. Instead, give ONE clear actionable recommendation based on the conditions (umbrella? safe to travel? good for outdoor activity? clothing advice?).
-5. Be concise — 2 to 4 sentences maximum. No bullet lists unless the user explicitly asks for details.
-6. If asked about data not in the block (e.g. specific hours outside the period, next week), say honestly that you don't have that detail right now.
-7. Do NOT say you cannot access real-time data — you HAVE received current data above.
-8. LANGUAGE: The verified weather block above is in English (internal grounding only). Translate condition labels naturally in your reply language, but never change the numeric facts if you reference them.
-9. DECISION FORMAT: For decision questions ("Should I…?", "Can I…?", "Is it safe…?", "Is it suitable…?"):
-   • Open with a clear verdict: Yes / No / With caution — and ONE short weather-based reason.
-   • Optionally add 1 sentence of practical advice.
-   • Total: 2–3 sentences. No long explanations.
-   Example: "Yes, cycling looks good for tomorrow morning — rain chance is low and the weather is calm. Carry water as it may feel warm."
-10. AVOID: Do not say "The temperature is X and humidity is Y" — that repeats the card. Instead say "It feels warm" or "Conditions are cool" or focus on the impact ("You'll stay dry", "Expect hot sun", "Roads may be wet").
-11. PROBABILISTIC LANGUAGE: Weather forecasts are inherently uncertain. Use appropriate conditional language:
-   • For rain probability 70%+: "Rain is very likely" or "There's a high chance of rain" (NOT "It will definitely rain")
-   • For rain probability 40-69%: "Rain is possible" or "There's a moderate chance"
-   • For rain probability <40%: "Rain is unlikely" or "Low chance of rain"
-   • Never use "definitely", "certainly", "guaranteed" for weather predictions
-   • For recommendations: "would be advisable", "recommended", "consider bringing" (NOT "definitely bring", "must carry")
-12. DATA ACCURACY: When referencing weather values, use EXACTLY the numbers from the verified data block above. If the card shows 88% rain chance, you must also say 88%, not 98% or any other rounded value. The card and your response must be perfectly consistent.
+3. ANSWER FORMAT:
+   • For DESCRIPTIVE questions ("What is the weather?", "What's the temperature?", "How's the weather?"):
+     Provide a brief weather description in natural language (1-2 sentences). You MAY reference specific values if needed for clarity, but keep it conversational.
+   • For DECISION questions ("Should I…?", "Can I…?", "Is it safe…?", "Is it suitable…?"):
+     Give a clear YES/NO/WITH CAUTION verdict with ONE weather-based reason, then optional practical advice (2-3 sentences total).
+     Example: "Yes, cycling looks good for tomorrow morning — rain chance is low and the weather is calm. Carry water as it may feel warm."
+4. Be concise — 2 to 4 sentences maximum. No bullet lists unless the user explicitly asks for details.
+5. If asked about data not in the block (e.g. specific hours outside the period, next week), say honestly that you don't have that detail right now.
+6. Do NOT say you cannot access real-time data — you HAVE received current data above.
+7. LANGUAGE: The verified weather block above is in English (internal grounding only). Translate condition labels naturally in your reply language, but never change the numeric facts if you reference them.
+8. PROBABILISTIC LANGUAGE: Use appropriate conditional language for forecasts ("likely", "possible", "unlikely" instead of "definitely", "certainly", "guaranteed").
+9. DATA ACCURACY: When referencing weather values, use EXACTLY the numbers from the verified data block above.
 `
   } else if (weatherContext?.today) {
     const t = weatherContext.today
@@ -127,25 +120,15 @@ ${forecastLines || '  No multi-day forecast available.'}
 STRICT RULES — follow without exception:
 1. Use ONLY the values above for any weather claim. Never estimate, round differently, or fabricate figures.
 2. The user will SEE a visual weather card displaying: temperature (${t.temp}°C), feels like (${t.feelsLike}°C), humidity (${t.humidity}%), wind (${t.wind} km/h), and rain chance (${t.rainChance}%).
-3. DO NOT restate these exact numbers in your reply — the user can already see them on the card.
-4. Instead, give ONE clear actionable recommendation based on the conditions (umbrella? safe to travel? good for outdoor activity? clothing advice?).
-5. Be concise — 2 to 4 sentences maximum. No bullet lists unless the user explicitly asks for details.
-6. If asked about data not in the block (e.g. specific hours, next week), say honestly that you don't have that detail right now.
-7. Do NOT say you cannot access real-time data — you HAVE received current data above.
-8. LANGUAGE: The verified weather block above is in English (internal grounding only). Translate condition labels naturally in your reply language, but never change the numeric facts if you reference them.
-9. DECISION FORMAT: For decision questions ("Should I…?", "Can I…?", "Is it safe…?", "Is it suitable…?"):
-   • Open with a clear verdict: Yes / No / With caution — and ONE short weather-based reason.
-   • Optionally add 1 sentence of practical advice.
-   • Total: 2–3 sentences. No long explanations.
-   Example: "Yes, cycling looks good today — rain chance is low and the weather is calm. Carry water as it may feel warm."
-10. AVOID: Do not say "The temperature is X and humidity is Y" — that repeats the card. Instead say "It feels warm" or "Conditions are cool" or focus on the impact ("You'll stay dry", "Expect hot sun", "Roads may be wet").
-11. PROBABILISTIC LANGUAGE: Weather forecasts are inherently uncertain. Use appropriate conditional language:
-   • For rain probability 70%+: "Rain is very likely" or "There's a high chance of rain" (NOT "It will definitely rain")
-   • For rain probability 40-69%: "Rain is possible" or "There's a moderate chance"
-   • For rain probability <40%: "Rain is unlikely" or "Low chance of rain"
-   • Never use "definitely", "certainly", "guaranteed" for weather predictions
-   • For recommendations: "would be advisable", "recommended", "consider bringing" (NOT "definitely bring", "must carry")
-12. DATA ACCURACY: When referencing weather values, use EXACTLY the numbers from the verified data block above. If the card shows 88% rain chance, you must also say 88%, not 98% or any other rounded value. The card and your response must be perfectly consistent.
+3. ANSWER FORMAT:
+   • For DESCRIPTIVE questions ("What is the weather?", "What's the temperature?", "How's the weather in X?"): 
+     Provide a brief weather description in natural language (1-2 sentences). You MAY reference specific values if needed for clarity, but keep it conversational. Example: "It's a warm sunny day with temperatures around 32°C and minimal chance of rain."
+   • For DECISION questions ("Should I carry an umbrella?", "Is it safe to travel?", "Can I go cycling?"): 
+     Give a clear YES/NO/WITH CAUTION verdict with ONE weather-based reason, then optional practical advice (2-3 sentences total).
+4. Be concise — 2 to 4 sentences maximum. No bullet lists unless the user explicitly asks for details.
+5. If asked about data not in the block (e.g. specific hours, next week), say honestly that you don't have that detail right now.
+6. Do NOT say you cannot access real-time data — you HAVE received current data above.
+7. LANGUAGE: The verified weather block above is in English (internal grounding only). Translate condition labels naturally in your reply language, but never change the numeric facts if you reference them.
 
 SPECIALIZED DECISION SUPPORT:
 

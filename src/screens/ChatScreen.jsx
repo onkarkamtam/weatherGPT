@@ -448,39 +448,47 @@ Keep response concise (2-4 sentences).`.trim()
       console.log('[WeatherGPT] NWP request detected:', { model, comparison, location: location.label })
 
       if (comparison || model === 'both') {
+        console.log('[NWP] Fetching both models concurrently...')
+        const fetchStartTime = performance.now()
+        
         // Fetch both models for comparison
         const { gfs, ecmwf, errors } = await fetchBothModels({
           lat: location.lat,
           lon: location.lon,
           days: 7,
         })
+        
+        const fetchDuration = Math.round(performance.now() - fetchStartTime)
+        console.log(`[NWP] Both models fetched in ${fetchDuration}ms`)
 
         if (!gfs && !ecmwf) {
           throw new NWPServiceError('Both NWP models failed to fetch data')
         }
 
-        // Build compact context for AI
+        // Build compact context for AI - keep it minimal to reduce AI response time
         const contextParts = []
         if (gfs) {
           const gfsSummary = gfs.forecast.slice(0, 24)
           const gfsAvgTemp = Math.round(gfsSummary.reduce((sum, f) => sum + (f.temperature || 0), 0) / gfsSummary.length)
           const gfsTotalPrecip = gfsSummary.reduce((sum, f) => sum + (f.precipitation || 0), 0).toFixed(1)
-          contextParts.push(`GFS GRAPES: avg ${gfsAvgTemp}°C, ${gfsTotalPrecip}mm precip (24h)`)
+          contextParts.push(`GFS: ${gfsAvgTemp}°C, ${gfsTotalPrecip}mm`)
         } else {
-          contextParts.push(`GFS GRAPES: unavailable (${errors.gfs})`)
+          contextParts.push(`GFS: unavailable`)
         }
 
         if (ecmwf) {
           const ecmwfSummary = ecmwf.forecast.slice(0, 24)
           const ecmwfAvgTemp = Math.round(ecmwfSummary.reduce((sum, f) => sum + (f.temperature || 0), 0) / ecmwfSummary.length)
           const ecmwfTotalPrecip = ecmwfSummary.reduce((sum, f) => sum + (f.precipitation || 0), 0).toFixed(1)
-          contextParts.push(`ECMWF IFS: avg ${ecmwfAvgTemp}°C, ${ecmwfTotalPrecip}mm precip (24h)`)
+          contextParts.push(`ECMWF: ${ecmwfAvgTemp}°C, ${ecmwfTotalPrecip}mm`)
         } else {
-          contextParts.push(`ECMWF IFS: unavailable (${errors.ecmwf})`)
+          contextParts.push(`ECMWF: unavailable`)
         }
 
-        const contextMessage = `${contextParts.join('. ')}. User sees both model cards. Explain differences are due to different model physics/resolution, NOT one being "correct". Reply in 2 sentences.`
+        // Minimal context - user sees the cards with full data
+        const contextMessage = `${contextParts.join(', ')} (24h avg). User sees both model cards. Explain differences briefly in 2 sentences.`
 
+        const aiStartTime = performance.now()
         const systemPrompt = buildGroundedSystemPrompt(location, weatherContext, promptLang)
         const aiResponse = await askGemini({
           userMessage: text + '\n\n' + contextMessage,
@@ -489,6 +497,10 @@ Keep response concise (2-4 sentences).`.trim()
           conversationId,
           location
         })
+        
+        const aiDuration = Math.round(performance.now() - aiStartTime)
+        const totalDuration = Math.round(performance.now() - fetchStartTime)
+        console.log(`[NWP] AI response: ${aiDuration}ms, Total: ${totalDuration}ms`)
 
         return {
           text: aiResponse.text,

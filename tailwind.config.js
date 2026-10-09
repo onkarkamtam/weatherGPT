@@ -68,8 +68,8 @@ export default {
           to:   { opacity: '1', transform: 'translateY(0)' },
         },
         bounceDot: {
-          '0%, 80%, 100%': { transform: 'scale(0)' },
-          '40%':           { transform: 'scale(1)' },
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%':      { transform: 'translateY(-8px)' },
         },
       },
     },
