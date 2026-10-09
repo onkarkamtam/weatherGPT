@@ -1,0 +1,1742 @@
+{
+  "batch": 1,
+  "timestamp": "2026-10-09T06:32:45.852Z",
+  "apiBaseUrl": "https://weather-gpt-india.vercel.app",
+  "totalTests": 39,
+  "completed": 39,
+  "passed": 24,
+  "failed": 0,
+  "partial": 12,
+  "blocked": 3,
+  "notRun": 0,
+  "tests": [
+    {
+      "testId": 677,
+      "city": "Mumbai",
+      "scenarioId": "A",
+      "scenarioName": "Current Weather",
+      "category": "weather",
+      "query": "What is the weather in Mumbai right now?",
+      "language": "en",
+      "requiresVoice": false,
+      "status": "PASS",
+      "expectedChecks": [
+        "Intent recognized correctly",
+        "Location resolved to correct coordinates",
+        "Weather data retrieved from API",
+        "Response contains actual weather data (not rejection)",
+        "Temperature value present",
+        "Loading animation started and stopped"
+      ],
+      "responseTime": 1619,
+      "checks": {
+        "intentDetected": true,
+        "locationResolved": true,
+        "dataRetrieved": true,
+        "actualData": true,
+        "temperaturePresent": true,
+        "correctProvider": true
+      },
+      "issues": [],
+      "providers": [
+        "Open-Meteo"
+      ],
+      "intentResult": "weather",
+      "geocoding": {
+        "coordinates": {
+          "latitude": 19.07283,
+          "longitude": 72.88261
+        },
+        "location": {
+          "name": "Mumbai",
+          "country": "India",
+          "admin1": "Maharashtra"
+        }
+      },
+      "weather": {
+        "temperature": 36.7,
+        "humidity": 32,
+        "weatherCode": 0
+      }
+    },
+    {
+      "testId": 678,
+      "city": "Mumbai",
+      "scenarioId": "B",
+      "scenarioName": "Tomorrow Forecast",
+      "category": "forecast",
+      "query": "What will the weather be in Mumbai tomorrow?",
+      "language": "en",
+      "requiresVoice": false,
+      "status": "PASS",
+      "expectedChecks": [
+        "Intent recognized correctly",
+        "Location resolved to correct coordinates",
+        "Weather data retrieved from API",
+        "Response contains actual weather data (not rejection)",
+        "Temperature value present",
+        "Loading animation started and stopped"
+      ],
+      "responseTime": 1316,
+      "checks": {
+        "intentDetected": true,
+        "locationResolved": true,
+        "dataRetrieved": true,
+        "actualData": true,
+        "temperaturePresent": true,
+        "correctProvider": true
+      },
+      "issues": [],
+      "providers": [
+        "Open-Meteo"
+      ],
+      "intentResult": "weather",
+      "geocoding": {
+        "coordinates": {
+          "latitude": 19.07283,
+          "longitude": 72.88261
+        },
+        "location": {
+          "name": "Mumbai",
+          "country": "India",
+          "admin1": "Maharashtra"
+        }
+      },
+      "weather": {
+        "temperature": 36.7,
+        "humidity": 32,
+        "weatherCode": 0
+      }
+    },
+    {
+      "testId": 679,
+      "city": "Mumbai",
+      "scenarioId": "C",
+      "scenarioName": "Umbrella with Context",
+      "category": "recommendation",
+      "query": "Should I carry an umbrella if I go outside tomorrow?",
+      "language": "en",
+      "requiresVoice": false,
+      "status": "PASS",
+      "expectedChecks": [
+        "Intent recognized correctly",
+        "Location context established or requested",
+        "Weather data used for recommendation",
+        "Clear YES/NO/CAUTION verdict provided",
+        "Reasoning based on actual conditions"
+      ],
+      "responseTime": 1461,
+      "checks": {
+        "intentDetected": true,
+        "locationResolved": true,
+        "dataRetrieved": true,
+        "actualData": true,
+        "temperaturePresent": true,
+        "correctProvider": true
+      },
+      "issues": [],
+      "providers": [
+        "Open-Meteo"
+      ],
+      "intentResult": "weather",
+      "geocoding": {
+        "coordinates": {
+          "latitude": 19.07283,
+          "longitude": 72.88261
+        },
+        "location": {
+          "name": "Mumbai",
+          "country": "India",
+          "admin1": "Maharashtra"
+        }
+      },
+      "weather": {
+        "temperature": 36.7,
+        "humidity": 32,
+        "weatherCode": 0
+      }
+    },
+    {
+      "testId": 680,
+      "city": "Mumbai",
+      "scenarioId": "D",
+      "scenarioName": "Agriculture Advisory",
+      "category": "agriculture",
+      "query": "What should farmers in Mumbai do based on today's weather?",
+      "language": "en",
+      "requiresVoice": false,
+      "status": "PASS",
+      "expectedChecks": [
+        "Intent recognized correctly",
+        "Current weather data retrieved",
+        "Practical agricultural advice given",
+        "No fabricated crop-specific facts",
+        "Advice appropriately qualified"
+      ],
+      "responseTime": 1833,
+      "checks": {
+        "intentDetected": true,
+        "locationResolved": true,
+        "dataRetrieved": true,
+        "actualData": true,
+        "temperaturePresent": true,
+        "correctProvider": true
+      },
+      "issues": [],
+      "providers": [
+        "Open-Meteo"
+      ],
+      "intentResult": "weather",
+      "geocoding": {
+        "coordinates": {
+          "latitude": 19.07283,
+          "longitude": 72.88261
+        },
+        "location": {
+          "name": "Mumbai",
+          "country": "India",
+          "admin1": "Maharashtra"
+        }
+      },
+      "weather": {
+        "temperature": 36.7,
+        "humidity": 32,
+        "weatherCode": 0
+      }
+    },
+    {
+      "testId": 681,
+      "city": "Mumbai",
+      "scenarioId": "E",
+      "scenarioName": "Outdoor Activity",
+      "category": "recommendation",
+      "query": "Is it a good time for an outdoor activity in Mumbai today?",
+      "language": "en",
+      "requiresVoice": false,
+      "status": "PASS",
+      "expectedChecks": [
+        "Intent recognized correctly",
+        "Location context established or requested",
+        "Weather data used for recommendation",
+        "Clear YES/NO/CAUTION verdict provided",
+        "Reasoning based on actual conditions"
+      ],
+      "responseTime": 1482,
+      "checks": {
+        "intentDetected": true,
+        "locationResolved": true,
+        "dataRetrieved": true,
+        "actualData": true,
+        "temperaturePresent": true,
+        "correctProvider": true
+      },
+      "issues": [],
+      "providers": [
+        "Open-Meteo"
+      ],
+      "intentResult": "weather",
+      "geocoding": {
+        "coordinates": {
+          "latitude": 19.07283,
+          "longitude": 72.88261
+        },
+        "location": {
+          "name": "Mumbai",
+          "country": "India",
+          "admin1": "Maharashtra"
+        }
+      },
+      "weather": {
+        "temperature": 36.7,
+        "humidity": 32,
+        "weatherCode": 0
+      }
+    },
+    {
+      "testId": 682,
+      "city": "Mumbai",
+      "scenarioId": "F",
+      "scenarioName": "Umbrella without Context",
+      "category": "recommendation",
+      "query": "Should I carry an umbrella?",
+      "language": "en",
+      "requiresVoice": false,
+      "status": "PARTIAL",
+      "expectedChecks": [
+        "Intent recognized correctly",
+        "Location context established or requested",
+        "Weather data used for recommendation",
+        "Clear YES/NO/CAUTION verdict provided",
+        "Reasoning based on actual conditions"
+      ],
+      "responseTime": 0,
+      "checks": {
+        "intentDetected": true,
+        "locationResolved": false,
+        "dataRetrieved": false,
+        "actualData": false,
+        "temperaturePresent": false,
+        "correctProvider": false
+      },
+      "issues": [],
+      "providers": [],
+      "intentResult": "weather",
+      "geocoding": null,
+      "weather": null
+    },
+    {
+      "testId": 683,
+      "city": "Mumbai",
+      "scenarioId": "G",
+      "scenarioName": "Hindi Query",
+      "category": "multilingual",
+      "query": "Mumbai में आज मौसम कैसा है?",
+      "language": "hi",
+      "requiresVoice": false,
+      "status": "PASS",
+      "expectedChecks": [
+        "HI intent recognized",
+        "Location resolved correctly",
+        "Weather data retrieved",
+        "Response in HI",
+        "Translation natural and accurate"
+      ],
+      "responseTime": 1467,
+      "checks": {
+        "intentDetected": true,
+        "locationResolved": true,
+        "dataRetrieved": true,
+        "actualData": true,
+        "temperaturePresent": true,
+        "correctProvider": true
+      },
+      "issues": [],
+      "providers": [
+        "Open-Meteo"
+      ],
+      "intentResult": "weather",
+      "geocoding": {
+        "coordinates": {
+          "latitude": 19.07283,
+          "longitude": 72.88261
+        },
+        "location": {
+          "name": "Mumbai",
+          "country": "India",
+          "admin1": "Maharashtra"
+        }
+      },
+      "weather": {
+        "temperature": 36.7,
+        "humidity": 32,
+        "weatherCode": 0
+      }
+    },
+    {
+      "testId": 684,
+      "city": "Mumbai",
+      "scenarioId": "H",
+      "scenarioName": "Marathi Query",
+      "category": "multilingual",
+      "query": "Mumbaiमध्ये आज हवामान कसं आहे?",
+      "language": "mr",
+      "requiresVoice": false,
+      "status": "PASS",
+      "expectedChecks": [
+        "MR intent recognized",
+        "Location resolved correctly",
+        "Weather data retrieved",
+        "Response in MR",
+        "Translation natural and accurate"
+      ],
+      "responseTime": 1533,
+      "checks": {
+        "intentDetected": true,
+        "locationResolved": true,
+        "dataRetrieved": true,
+        "actualData": true,
+        "temperaturePresent": true,
+        "correctProvider": true
+      },
+      "issues": [],
+      "providers": [
+        "Open-Meteo"
+      ],
+      "intentResult": "weather",
+      "geocoding": {
+        "coordinates": {
+          "latitude": 19.07283,
+          "longitude": 72.88261
+        },
+        "location": {
+          "name": "Mumbai",
+          "country": "India",
+          "admin1": "Maharashtra"
+        }
+      },
+      "weather": {
+        "temperature": 36.7,
+        "humidity": 32,
+        "weatherCode": 0
+      }
+    },
+    {
+      "testId": 685,
+      "city": "Mumbai",
+      "scenarioId": "I",
+      "scenarioName": "Telugu Query",
+      "category": "multilingual",
+      "query": "Mumbaiలో ఈరోజు వాతావరణం ఎలా ఉంది?",
+      "language": "te",
+      "requiresVoice": false,
+      "status": "PASS",
+      "expectedChecks": [
+        "TE intent recognized",
+        "Location resolved correctly",
+        "Weather data retrieved",
+        "Response in TE",
+        "Translation natural and accurate"
+      ],
+      "responseTime": 1557,
+      "checks": {
+        "intentDetected": true,
+        "locationResolved": true,
+        "dataRetrieved": true,
+        "actualData": true,
+        "temperaturePresent": true,
+        "correctProvider": true
+      },
+      "issues": [],
+      "providers": [
+        "Open-Meteo"
+      ],
+      "intentResult": "weather",
+      "geocoding": {
+        "coordinates": {
+          "latitude": 19.07283,
+          "longitude": 72.88261
+        },
+        "location": {
+          "name": "Mumbai",
+          "country": "India",
+          "admin1": "Maharashtra"
+        }
+      },
+      "weather": {
+        "temperature": 36.7,
+        "humidity": 32,
+        "weatherCode": 0
+      }
+    },
+    {
+      "testId": 686,
+      "city": "Mumbai",
+      "scenarioId": "J",
+      "scenarioName": "Voice Input",
+      "category": "voice",
+      "query": "What's the weather in Mumbai today?",
+      "language": "en",
+      "requiresVoice": true,
+      "status": "BLOCKED",
+      "expectedChecks": [
+        "Microphone permission handled",
+        "Speech recognition activated",
+        "Transcription accurate",
+        "Query submitted correctly",
+        "Weather response received"
+      ],
+      "reason": "Voice input requires microphone and cannot be automated",
+      "responseTime": null,
+      "checks": {},
+      "issues": [
+        "Requires manual testing with microphone"
+      ],
+      "providers": []
+    },
+    {
+      "testId": 687,
+      "city": "Mumbai",
+      "scenarioId": "K",
+      "scenarioName": "5-Year Temperature Trend",
+      "category": "historical",
+      "query": "What is the temperature trend in Mumbai over the past 5 years?",
+      "language": "en",
+      "requiresVoice": false,
+      "status": "PARTIAL",
+      "expectedChecks": [
+        "Historical data source identified",
+        "5-year date range confirmed",
+        "Actual historical/reanalysis data used",
+        "No substitution of current weather",
+        "Trend analysis provided or clear limitation stated"
+      ],
+      "responseTime": 2145,
+      "checks": {
+        "intentDetected": true,
+        "locationResolved": true,
+        "dataRetrieved": false,
+        "actualData": false,
+        "temperaturePresent": false,
+        "correctProvider": false
+      },
+      "issues": [
+        "Historical data provider not tested (requires climate API)"
+      ],
+      "providers": [],
+      "intentResult": "historical",
+      "geocoding": {
+        "coordinates": {
+          "latitude": 19.07283,
+          "longitude": 72.88261
+        },
+        "location": {
+          "name": "Mumbai",
+          "country": "India",
+          "admin1": "Maharashtra"
+        }
+      },
+      "weather": null
+    },
+    {
+      "testId": 688,
+      "city": "Mumbai",
+      "scenarioId": "L",
+      "scenarioName": "NWP Model Comparison",
+      "category": "nwp",
+      "query": "Compare the GFS GRAPES and ECMWF IFS forecasts for Mumbai for the next 3 days.",
+      "language": "en",
+      "requiresVoice": false,
+      "status": "PARTIAL",
+      "expectedChecks": [
+        "Both GFS and ECMWF models requested",
+        "Model-specific data retrieved",
+        "Forecast periods comparable",
+        "Differences explained",
+        "Timing: fetch < 12s, AI < 18s, total < 28s",
+        "Console timing logs present"
+      ],
+      "responseTime": 564,
+      "checks": {
+        "intentDetected": true,
+        "locationResolved": true,
+        "dataRetrieved": false,
+        "actualData": false,
+        "temperaturePresent": false,
+        "correctProvider": false
+      },
+      "issues": [
+        "NWP provider not tested (requires /api/nwp-forecast)"
+      ],
+      "providers": [],
+      "intentResult": "nwp",
+      "geocoding": {
+        "coordinates": {
+          "latitude": 19.07283,
+          "longitude": 72.88261
+        },
+        "location": {
+          "name": "Mumbai",
+          "country": "India",
+          "admin1": "Maharashtra"
+        }
+      },
+      "weather": null
+    },
+    {
+      "testId": 689,
+      "city": "Mumbai",
+      "scenarioId": "M",
+      "scenarioName": "IMD Official Warning",
+      "category": "imd",
+      "query": "What is the latest official IMD weather warning for Mumbai?",
+      "language": "en",
+      "requiresVoice": false,
+      "status": "PARTIAL",
+      "expectedChecks": [
+        "IMD data source queried",
+        "Official warning status determined",
+        "Geographic applicability verified",
+        "No fabricated warnings",
+        "Clear handling of no-warning case"
+      ],
+      "responseTime": 598,
+      "checks": {
+        "intentDetected": true,
+        "locationResolved": true,
+        "dataRetrieved": false,
+        "actualData": false,
+        "temperaturePresent": false,
+        "correctProvider": false
+      },
+      "issues": [
+        "IMD provider not tested (requires /api/imd-alerts)"
+      ],
+      "providers": [],
+      "intentResult": "imd",
+      "geocoding": {
+        "coordinates": {
+          "latitude": 19.07283,
+          "longitude": 72.88261
+        },
+        "location": {
+          "name": "Mumbai",
+          "country": "India",
+          "admin1": "Maharashtra"
+        }
+      },
+      "weather": null
+    },
+    {
+      "testId": 690,
+      "city": "Pune",
+      "scenarioId": "A",
+      "scenarioName": "Current Weather",
+      "category": "weather",
+      "query": "What is the weather in Pune right now?",
+      "language": "en",
+      "requiresVoice": false,
+      "status": "PASS",
+      "expectedChecks": [
+        "Intent recognized correctly",
+        "Location resolved to correct coordinates",
+        "Weather data retrieved from API",
+        "Response contains actual weather data (not rejection)",
+        "Temperature value present",
+        "Loading animation started and stopped"
+      ],
+      "responseTime": 1297,
+      "checks": {
+        "intentDetected": true,
+        "locationResolved": true,
+        "dataRetrieved": true,
+        "actualData": true,
+        "temperaturePresent": true,
+        "correctProvider": true
+      },
+      "issues": [],
+      "providers": [
+        "Open-Meteo"
+      ],
+      "intentResult": "weather",
+      "geocoding": {
+        "coordinates": {
+          "latitude": 18.51957,
+          "longitude": 73.85535
+        },
+        "location": {
+          "name": "Pune",
+          "country": "India",
+          "admin1": "Maharashtra"
+        }
+      },
+      "weather": {
+        "temperature": 32.9,
+        "humidity": 32,
+        "weatherCode": 1
+      }
+    },
+    {
+      "testId": 691,
+      "city": "Pune",
+      "scenarioId": "B",
+      "scenarioName": "Tomorrow Forecast",
+      "category": "forecast",
+      "query": "What will the weather be in Pune tomorrow?",
+      "language": "en",
+      "requiresVoice": false,
+      "status": "PASS",
+      "expectedChecks": [
+        "Intent recognized correctly",
+        "Location resolved to correct coordinates",
+        "Weather data retrieved from API",
+        "Response contains actual weather data (not rejection)",
+        "Temperature value present",
+        "Loading animation started and stopped"
+      ],
+      "responseTime": 1549,
+      "checks": {
+        "intentDetected": true,
+        "locationResolved": true,
+        "dataRetrieved": true,
+        "actualData": true,
+        "temperaturePresent": true,
+        "correctProvider": true
+      },
+      "issues": [],
+      "providers": [
+        "Open-Meteo"
+      ],
+      "intentResult": "weather",
+      "geocoding": {
+        "coordinates": {
+          "latitude": 18.51957,
+          "longitude": 73.85535
+        },
+        "location": {
+          "name": "Pune",
+          "country": "India",
+          "admin1": "Maharashtra"
+        }
+      },
+      "weather": {
+        "temperature": 32.9,
+        "humidity": 32,
+        "weatherCode": 1
+      }
+    },
+    {
+      "testId": 692,
+      "city": "Pune",
+      "scenarioId": "C",
+      "scenarioName": "Umbrella with Context",
+      "category": "recommendation",
+      "query": "Should I carry an umbrella if I go outside tomorrow?",
+      "language": "en",
+      "requiresVoice": false,
+      "status": "PASS",
+      "expectedChecks": [
+        "Intent recognized correctly",
+        "Location context established or requested",
+        "Weather data used for recommendation",
+        "Clear YES/NO/CAUTION verdict provided",
+        "Reasoning based on actual conditions"
+      ],
+      "responseTime": 1383,
+      "checks": {
+        "intentDetected": true,
+        "locationResolved": true,
+        "dataRetrieved": true,
+        "actualData": true,
+        "temperaturePresent": true,
+        "correctProvider": true
+      },
+      "issues": [],
+      "providers": [
+        "Open-Meteo"
+      ],
+      "intentResult": "weather",
+      "geocoding": {
+        "coordinates": {
+          "latitude": 18.51957,
+          "longitude": 73.85535
+        },
+        "location": {
+          "name": "Pune",
+          "country": "India",
+          "admin1": "Maharashtra"
+        }
+      },
+      "weather": {
+        "temperature": 32.9,
+        "humidity": 32,
+        "weatherCode": 1
+      }
+    },
+    {
+      "testId": 693,
+      "city": "Pune",
+      "scenarioId": "D",
+      "scenarioName": "Agriculture Advisory",
+      "category": "agriculture",
+      "query": "What should farmers in Pune do based on today's weather?",
+      "language": "en",
+      "requiresVoice": false,
+      "status": "PASS",
+      "expectedChecks": [
+        "Intent recognized correctly",
+        "Current weather data retrieved",
+        "Practical agricultural advice given",
+        "No fabricated crop-specific facts",
+        "Advice appropriately qualified"
+      ],
+      "responseTime": 1478,
+      "checks": {
+        "intentDetected": true,
+        "locationResolved": true,
+        "dataRetrieved": true,
+        "actualData": true,
+        "temperaturePresent": true,
+        "correctProvider": true
+      },
+      "issues": [],
+      "providers": [
+        "Open-Meteo"
+      ],
+      "intentResult": "weather",
+      "geocoding": {
+        "coordinates": {
+          "latitude": 18.51957,
+          "longitude": 73.85535
+        },
+        "location": {
+          "name": "Pune",
+          "country": "India",
+          "admin1": "Maharashtra"
+        }
+      },
+      "weather": {
+        "temperature": 32.9,
+        "humidity": 32,
+        "weatherCode": 1
+      }
+    },
+    {
+      "testId": 694,
+      "city": "Pune",
+      "scenarioId": "E",
+      "scenarioName": "Outdoor Activity",
+      "category": "recommendation",
+      "query": "Is it a good time for an outdoor activity in Pune today?",
+      "language": "en",
+      "requiresVoice": false,
+      "status": "PASS",
+      "expectedChecks": [
+        "Intent recognized correctly",
+        "Location context established or requested",
+        "Weather data used for recommendation",
+        "Clear YES/NO/CAUTION verdict provided",
+        "Reasoning based on actual conditions"
+      ],
+      "responseTime": 1338,
+      "checks": {
+        "intentDetected": true,
+        "locationResolved": true,
+        "dataRetrieved": true,
+        "actualData": true,
+        "temperaturePresent": true,
+        "correctProvider": true
+      },
+      "issues": [],
+      "providers": [
+        "Open-Meteo"
+      ],
+      "intentResult": "weather",
+      "geocoding": {
+        "coordinates": {
+          "latitude": 18.51957,
+          "longitude": 73.85535
+        },
+        "location": {
+          "name": "Pune",
+          "country": "India",
+          "admin1": "Maharashtra"
+        }
+      },
+      "weather": {
+        "temperature": 32.9,
+        "humidity": 32,
+        "weatherCode": 1
+      }
+    },
+    {
+      "testId": 695,
+      "city": "Pune",
+      "scenarioId": "F",
+      "scenarioName": "Umbrella without Context",
+      "category": "recommendation",
+      "query": "Should I carry an umbrella?",
+      "language": "en",
+      "requiresVoice": false,
+      "status": "PARTIAL",
+      "expectedChecks": [
+        "Intent recognized correctly",
+        "Location context established or requested",
+        "Weather data used for recommendation",
+        "Clear YES/NO/CAUTION verdict provided",
+        "Reasoning based on actual conditions"
+      ],
+      "responseTime": 0,
+      "checks": {
+        "intentDetected": true,
+        "locationResolved": false,
+        "dataRetrieved": false,
+        "actualData": false,
+        "temperaturePresent": false,
+        "correctProvider": false
+      },
+      "issues": [],
+      "providers": [],
+      "intentResult": "weather",
+      "geocoding": null,
+      "weather": null
+    },
+    {
+      "testId": 696,
+      "city": "Pune",
+      "scenarioId": "G",
+      "scenarioName": "Hindi Query",
+      "category": "multilingual",
+      "query": "Pune में आज मौसम कैसा है?",
+      "language": "hi",
+      "requiresVoice": false,
+      "status": "PASS",
+      "expectedChecks": [
+        "HI intent recognized",
+        "Location resolved correctly",
+        "Weather data retrieved",
+        "Response in HI",
+        "Translation natural and accurate"
+      ],
+      "responseTime": 1350,
+      "checks": {
+        "intentDetected": true,
+        "locationResolved": true,
+        "dataRetrieved": true,
+        "actualData": true,
+        "temperaturePresent": true,
+        "correctProvider": true
+      },
+      "issues": [],
+      "providers": [
+        "Open-Meteo"
+      ],
+      "intentResult": "weather",
+      "geocoding": {
+        "coordinates": {
+          "latitude": 18.51957,
+          "longitude": 73.85535
+        },
+        "location": {
+          "name": "Pune",
+          "country": "India",
+          "admin1": "Maharashtra"
+        }
+      },
+      "weather": {
+        "temperature": 32.9,
+        "humidity": 32,
+        "weatherCode": 1
+      }
+    },
+    {
+      "testId": 697,
+      "city": "Pune",
+      "scenarioId": "H",
+      "scenarioName": "Marathi Query",
+      "category": "multilingual",
+      "query": "Puneमध्ये आज हवामान कसं आहे?",
+      "language": "mr",
+      "requiresVoice": false,
+      "status": "PASS",
+      "expectedChecks": [
+        "MR intent recognized",
+        "Location resolved correctly",
+        "Weather data retrieved",
+        "Response in MR",
+        "Translation natural and accurate"
+      ],
+      "responseTime": 1438,
+      "checks": {
+        "intentDetected": true,
+        "locationResolved": true,
+        "dataRetrieved": true,
+        "actualData": true,
+        "temperaturePresent": true,
+        "correctProvider": true
+      },
+      "issues": [],
+      "providers": [
+        "Open-Meteo"
+      ],
+      "intentResult": "weather",
+      "geocoding": {
+        "coordinates": {
+          "latitude": 18.51957,
+          "longitude": 73.85535
+        },
+        "location": {
+          "name": "Pune",
+          "country": "India",
+          "admin1": "Maharashtra"
+        }
+      },
+      "weather": {
+        "temperature": 32.9,
+        "humidity": 32,
+        "weatherCode": 1
+      }
+    },
+    {
+      "testId": 698,
+      "city": "Pune",
+      "scenarioId": "I",
+      "scenarioName": "Telugu Query",
+      "category": "multilingual",
+      "query": "Puneలో ఈరోజు వాతావరణం ఎలా ఉంది?",
+      "language": "te",
+      "requiresVoice": false,
+      "status": "PASS",
+      "expectedChecks": [
+        "TE intent recognized",
+        "Location resolved correctly",
+        "Weather data retrieved",
+        "Response in TE",
+        "Translation natural and accurate"
+      ],
+      "responseTime": 1541,
+      "checks": {
+        "intentDetected": true,
+        "locationResolved": true,
+        "dataRetrieved": true,
+        "actualData": true,
+        "temperaturePresent": true,
+        "correctProvider": true
+      },
+      "issues": [],
+      "providers": [
+        "Open-Meteo"
+      ],
+      "intentResult": "weather",
+      "geocoding": {
+        "coordinates": {
+          "latitude": 18.51957,
+          "longitude": 73.85535
+        },
+        "location": {
+          "name": "Pune",
+          "country": "India",
+          "admin1": "Maharashtra"
+        }
+      },
+      "weather": {
+        "temperature": 32.9,
+        "humidity": 32,
+        "weatherCode": 1
+      }
+    },
+    {
+      "testId": 699,
+      "city": "Pune",
+      "scenarioId": "J",
+      "scenarioName": "Voice Input",
+      "category": "voice",
+      "query": "What's the weather in Pune today?",
+      "language": "en",
+      "requiresVoice": true,
+      "status": "BLOCKED",
+      "expectedChecks": [
+        "Microphone permission handled",
+        "Speech recognition activated",
+        "Transcription accurate",
+        "Query submitted correctly",
+        "Weather response received"
+      ],
+      "reason": "Voice input requires microphone and cannot be automated",
+      "responseTime": null,
+      "checks": {},
+      "issues": [
+        "Requires manual testing with microphone"
+      ],
+      "providers": []
+    },
+    {
+      "testId": 700,
+      "city": "Pune",
+      "scenarioId": "K",
+      "scenarioName": "5-Year Temperature Trend",
+      "category": "historical",
+      "query": "What is the temperature trend in Pune over the past 5 years?",
+      "language": "en",
+      "requiresVoice": false,
+      "status": "PARTIAL",
+      "expectedChecks": [
+        "Historical data source identified",
+        "5-year date range confirmed",
+        "Actual historical/reanalysis data used",
+        "No substitution of current weather",
+        "Trend analysis provided or clear limitation stated"
+      ],
+      "responseTime": 622,
+      "checks": {
+        "intentDetected": true,
+        "locationResolved": true,
+        "dataRetrieved": false,
+        "actualData": false,
+        "temperaturePresent": false,
+        "correctProvider": false
+      },
+      "issues": [
+        "Historical data provider not tested (requires climate API)"
+      ],
+      "providers": [],
+      "intentResult": "historical",
+      "geocoding": {
+        "coordinates": {
+          "latitude": 18.51957,
+          "longitude": 73.85535
+        },
+        "location": {
+          "name": "Pune",
+          "country": "India",
+          "admin1": "Maharashtra"
+        }
+      },
+      "weather": null
+    },
+    {
+      "testId": 701,
+      "city": "Pune",
+      "scenarioId": "L",
+      "scenarioName": "NWP Model Comparison",
+      "category": "nwp",
+      "query": "Compare the GFS GRAPES and ECMWF IFS forecasts for Pune for the next 3 days.",
+      "language": "en",
+      "requiresVoice": false,
+      "status": "PARTIAL",
+      "expectedChecks": [
+        "Both GFS and ECMWF models requested",
+        "Model-specific data retrieved",
+        "Forecast periods comparable",
+        "Differences explained",
+        "Timing: fetch < 12s, AI < 18s, total < 28s",
+        "Console timing logs present"
+      ],
+      "responseTime": 694,
+      "checks": {
+        "intentDetected": true,
+        "locationResolved": true,
+        "dataRetrieved": false,
+        "actualData": false,
+        "temperaturePresent": false,
+        "correctProvider": false
+      },
+      "issues": [
+        "NWP provider not tested (requires /api/nwp-forecast)"
+      ],
+      "providers": [],
+      "intentResult": "nwp",
+      "geocoding": {
+        "coordinates": {
+          "latitude": 18.51957,
+          "longitude": 73.85535
+        },
+        "location": {
+          "name": "Pune",
+          "country": "India",
+          "admin1": "Maharashtra"
+        }
+      },
+      "weather": null
+    },
+    {
+      "testId": 702,
+      "city": "Pune",
+      "scenarioId": "M",
+      "scenarioName": "IMD Official Warning",
+      "category": "imd",
+      "query": "What is the latest official IMD weather warning for Pune?",
+      "language": "en",
+      "requiresVoice": false,
+      "status": "PARTIAL",
+      "expectedChecks": [
+        "IMD data source queried",
+        "Official warning status determined",
+        "Geographic applicability verified",
+        "No fabricated warnings",
+        "Clear handling of no-warning case"
+      ],
+      "responseTime": 789,
+      "checks": {
+        "intentDetected": true,
+        "locationResolved": true,
+        "dataRetrieved": false,
+        "actualData": false,
+        "temperaturePresent": false,
+        "correctProvider": false
+      },
+      "issues": [
+        "IMD provider not tested (requires /api/imd-alerts)"
+      ],
+      "providers": [],
+      "intentResult": "imd",
+      "geocoding": {
+        "coordinates": {
+          "latitude": 18.51957,
+          "longitude": 73.85535
+        },
+        "location": {
+          "name": "Pune",
+          "country": "India",
+          "admin1": "Maharashtra"
+        }
+      },
+      "weather": null
+    },
+    {
+      "testId": 729,
+      "city": "Pandharpur",
+      "scenarioId": "A",
+      "scenarioName": "Current Weather",
+      "category": "weather",
+      "query": "What is the weather in Pandharpur right now?",
+      "language": "en",
+      "requiresVoice": false,
+      "status": "PASS",
+      "expectedChecks": [
+        "Intent recognized correctly",
+        "Location resolved to correct coordinates",
+        "Weather data retrieved from API",
+        "Response contains actual weather data (not rejection)",
+        "Temperature value present",
+        "Loading animation started and stopped"
+      ],
+      "responseTime": 1616,
+      "checks": {
+        "intentDetected": true,
+        "locationResolved": true,
+        "dataRetrieved": true,
+        "actualData": true,
+        "temperaturePresent": true,
+        "correctProvider": true
+      },
+      "issues": [],
+      "providers": [
+        "Open-Meteo"
+      ],
+      "intentResult": "weather",
+      "geocoding": {
+        "coordinates": {
+          "latitude": 17.67924,
+          "longitude": 75.33098
+        },
+        "location": {
+          "name": "Pandharpur",
+          "country": "India",
+          "admin1": "Maharashtra"
+        }
+      },
+      "weather": {
+        "temperature": 33.7,
+        "humidity": 32,
+        "weatherCode": 0
+      }
+    },
+    {
+      "testId": 730,
+      "city": "Pandharpur",
+      "scenarioId": "B",
+      "scenarioName": "Tomorrow Forecast",
+      "category": "forecast",
+      "query": "What will the weather be in Pandharpur tomorrow?",
+      "language": "en",
+      "requiresVoice": false,
+      "status": "PASS",
+      "expectedChecks": [
+        "Intent recognized correctly",
+        "Location resolved to correct coordinates",
+        "Weather data retrieved from API",
+        "Response contains actual weather data (not rejection)",
+        "Temperature value present",
+        "Loading animation started and stopped"
+      ],
+      "responseTime": 1514,
+      "checks": {
+        "intentDetected": true,
+        "locationResolved": true,
+        "dataRetrieved": true,
+        "actualData": true,
+        "temperaturePresent": true,
+        "correctProvider": true
+      },
+      "issues": [],
+      "providers": [
+        "Open-Meteo"
+      ],
+      "intentResult": "weather",
+      "geocoding": {
+        "coordinates": {
+          "latitude": 17.67924,
+          "longitude": 75.33098
+        },
+        "location": {
+          "name": "Pandharpur",
+          "country": "India",
+          "admin1": "Maharashtra"
+        }
+      },
+      "weather": {
+        "temperature": 33.7,
+        "humidity": 32,
+        "weatherCode": 0
+      }
+    },
+    {
+      "testId": 731,
+      "city": "Pandharpur",
+      "scenarioId": "C",
+      "scenarioName": "Umbrella with Context",
+      "category": "recommendation",
+      "query": "Should I carry an umbrella if I go outside tomorrow?",
+      "language": "en",
+      "requiresVoice": false,
+      "status": "PASS",
+      "expectedChecks": [
+        "Intent recognized correctly",
+        "Location context established or requested",
+        "Weather data used for recommendation",
+        "Clear YES/NO/CAUTION verdict provided",
+        "Reasoning based on actual conditions"
+      ],
+      "responseTime": 1670,
+      "checks": {
+        "intentDetected": true,
+        "locationResolved": true,
+        "dataRetrieved": true,
+        "actualData": true,
+        "temperaturePresent": true,
+        "correctProvider": true
+      },
+      "issues": [],
+      "providers": [
+        "Open-Meteo"
+      ],
+      "intentResult": "weather",
+      "geocoding": {
+        "coordinates": {
+          "latitude": 17.67924,
+          "longitude": 75.33098
+        },
+        "location": {
+          "name": "Pandharpur",
+          "country": "India",
+          "admin1": "Maharashtra"
+        }
+      },
+      "weather": {
+        "temperature": 33.7,
+        "humidity": 32,
+        "weatherCode": 0
+      }
+    },
+    {
+      "testId": 732,
+      "city": "Pandharpur",
+      "scenarioId": "D",
+      "scenarioName": "Agriculture Advisory",
+      "category": "agriculture",
+      "query": "What should farmers in Pandharpur do based on today's weather?",
+      "language": "en",
+      "requiresVoice": false,
+      "status": "PASS",
+      "expectedChecks": [
+        "Intent recognized correctly",
+        "Current weather data retrieved",
+        "Practical agricultural advice given",
+        "No fabricated crop-specific facts",
+        "Advice appropriately qualified"
+      ],
+      "responseTime": 1581,
+      "checks": {
+        "intentDetected": true,
+        "locationResolved": true,
+        "dataRetrieved": true,
+        "actualData": true,
+        "temperaturePresent": true,
+        "correctProvider": true
+      },
+      "issues": [],
+      "providers": [
+        "Open-Meteo"
+      ],
+      "intentResult": "weather",
+      "geocoding": {
+        "coordinates": {
+          "latitude": 17.67924,
+          "longitude": 75.33098
+        },
+        "location": {
+          "name": "Pandharpur",
+          "country": "India",
+          "admin1": "Maharashtra"
+        }
+      },
+      "weather": {
+        "temperature": 33.7,
+        "humidity": 32,
+        "weatherCode": 0
+      }
+    },
+    {
+      "testId": 733,
+      "city": "Pandharpur",
+      "scenarioId": "E",
+      "scenarioName": "Outdoor Activity",
+      "category": "recommendation",
+      "query": "Is it a good time for an outdoor activity in Pandharpur today?",
+      "language": "en",
+      "requiresVoice": false,
+      "status": "PASS",
+      "expectedChecks": [
+        "Intent recognized correctly",
+        "Location context established or requested",
+        "Weather data used for recommendation",
+        "Clear YES/NO/CAUTION verdict provided",
+        "Reasoning based on actual conditions"
+      ],
+      "responseTime": 1572,
+      "checks": {
+        "intentDetected": true,
+        "locationResolved": true,
+        "dataRetrieved": true,
+        "actualData": true,
+        "temperaturePresent": true,
+        "correctProvider": true
+      },
+      "issues": [],
+      "providers": [
+        "Open-Meteo"
+      ],
+      "intentResult": "weather",
+      "geocoding": {
+        "coordinates": {
+          "latitude": 17.67924,
+          "longitude": 75.33098
+        },
+        "location": {
+          "name": "Pandharpur",
+          "country": "India",
+          "admin1": "Maharashtra"
+        }
+      },
+      "weather": {
+        "temperature": 33.7,
+        "humidity": 32,
+        "weatherCode": 0
+      }
+    },
+    {
+      "testId": 734,
+      "city": "Pandharpur",
+      "scenarioId": "F",
+      "scenarioName": "Umbrella without Context",
+      "category": "recommendation",
+      "query": "Should I carry an umbrella?",
+      "language": "en",
+      "requiresVoice": false,
+      "status": "PARTIAL",
+      "expectedChecks": [
+        "Intent recognized correctly",
+        "Location context established or requested",
+        "Weather data used for recommendation",
+        "Clear YES/NO/CAUTION verdict provided",
+        "Reasoning based on actual conditions"
+      ],
+      "responseTime": 0,
+      "checks": {
+        "intentDetected": true,
+        "locationResolved": false,
+        "dataRetrieved": false,
+        "actualData": false,
+        "temperaturePresent": false,
+        "correctProvider": false
+      },
+      "issues": [],
+      "providers": [],
+      "intentResult": "weather",
+      "geocoding": null,
+      "weather": null
+    },
+    {
+      "testId": 735,
+      "city": "Pandharpur",
+      "scenarioId": "G",
+      "scenarioName": "Hindi Query",
+      "category": "multilingual",
+      "query": "Pandharpur में आज मौसम कैसा है?",
+      "language": "hi",
+      "requiresVoice": false,
+      "status": "PASS",
+      "expectedChecks": [
+        "HI intent recognized",
+        "Location resolved correctly",
+        "Weather data retrieved",
+        "Response in HI",
+        "Translation natural and accurate"
+      ],
+      "responseTime": 1652,
+      "checks": {
+        "intentDetected": true,
+        "locationResolved": true,
+        "dataRetrieved": true,
+        "actualData": true,
+        "temperaturePresent": true,
+        "correctProvider": true
+      },
+      "issues": [],
+      "providers": [
+        "Open-Meteo"
+      ],
+      "intentResult": "weather",
+      "geocoding": {
+        "coordinates": {
+          "latitude": 17.67924,
+          "longitude": 75.33098
+        },
+        "location": {
+          "name": "Pandharpur",
+          "country": "India",
+          "admin1": "Maharashtra"
+        }
+      },
+      "weather": {
+        "temperature": 33.7,
+        "humidity": 32,
+        "weatherCode": 0
+      }
+    },
+    {
+      "testId": 736,
+      "city": "Pandharpur",
+      "scenarioId": "H",
+      "scenarioName": "Marathi Query",
+      "category": "multilingual",
+      "query": "Pandharpurमध्ये आज हवामान कसं आहे?",
+      "language": "mr",
+      "requiresVoice": false,
+      "status": "PASS",
+      "expectedChecks": [
+        "MR intent recognized",
+        "Location resolved correctly",
+        "Weather data retrieved",
+        "Response in MR",
+        "Translation natural and accurate"
+      ],
+      "responseTime": 1904,
+      "checks": {
+        "intentDetected": true,
+        "locationResolved": true,
+        "dataRetrieved": true,
+        "actualData": true,
+        "temperaturePresent": true,
+        "correctProvider": true
+      },
+      "issues": [],
+      "providers": [
+        "Open-Meteo"
+      ],
+      "intentResult": "weather",
+      "geocoding": {
+        "coordinates": {
+          "latitude": 17.67924,
+          "longitude": 75.33098
+        },
+        "location": {
+          "name": "Pandharpur",
+          "country": "India",
+          "admin1": "Maharashtra"
+        }
+      },
+      "weather": {
+        "temperature": 33.7,
+        "humidity": 32,
+        "weatherCode": 0
+      }
+    },
+    {
+      "testId": 737,
+      "city": "Pandharpur",
+      "scenarioId": "I",
+      "scenarioName": "Telugu Query",
+      "category": "multilingual",
+      "query": "Pandharpurలో ఈరోజు వాతావరణం ఎలా ఉంది?",
+      "language": "te",
+      "requiresVoice": false,
+      "status": "PASS",
+      "expectedChecks": [
+        "TE intent recognized",
+        "Location resolved correctly",
+        "Weather data retrieved",
+        "Response in TE",
+        "Translation natural and accurate"
+      ],
+      "responseTime": 1647,
+      "checks": {
+        "intentDetected": true,
+        "locationResolved": true,
+        "dataRetrieved": true,
+        "actualData": true,
+        "temperaturePresent": true,
+        "correctProvider": true
+      },
+      "issues": [],
+      "providers": [
+        "Open-Meteo"
+      ],
+      "intentResult": "weather",
+      "geocoding": {
+        "coordinates": {
+          "latitude": 17.67924,
+          "longitude": 75.33098
+        },
+        "location": {
+          "name": "Pandharpur",
+          "country": "India",
+          "admin1": "Maharashtra"
+        }
+      },
+      "weather": {
+        "temperature": 33.7,
+        "humidity": 32,
+        "weatherCode": 0
+      }
+    },
+    {
+      "testId": 738,
+      "city": "Pandharpur",
+      "scenarioId": "J",
+      "scenarioName": "Voice Input",
+      "category": "voice",
+      "query": "What's the weather in Pandharpur today?",
+      "language": "en",
+      "requiresVoice": true,
+      "status": "BLOCKED",
+      "expectedChecks": [
+        "Microphone permission handled",
+        "Speech recognition activated",
+        "Transcription accurate",
+        "Query submitted correctly",
+        "Weather response received"
+      ],
+      "reason": "Voice input requires microphone and cannot be automated",
+      "responseTime": null,
+      "checks": {},
+      "issues": [
+        "Requires manual testing with microphone"
+      ],
+      "providers": []
+    },
+    {
+      "testId": 739,
+      "city": "Pandharpur",
+      "scenarioId": "K",
+      "scenarioName": "5-Year Temperature Trend",
+      "category": "historical",
+      "query": "What is the temperature trend in Pandharpur over the past 5 years?",
+      "language": "en",
+      "requiresVoice": false,
+      "status": "PARTIAL",
+      "expectedChecks": [
+        "Historical data source identified",
+        "5-year date range confirmed",
+        "Actual historical/reanalysis data used",
+        "No substitution of current weather",
+        "Trend analysis provided or clear limitation stated"
+      ],
+      "responseTime": 881,
+      "checks": {
+        "intentDetected": true,
+        "locationResolved": true,
+        "dataRetrieved": false,
+        "actualData": false,
+        "temperaturePresent": false,
+        "correctProvider": false
+      },
+      "issues": [
+        "Historical data provider not tested (requires climate API)"
+      ],
+      "providers": [],
+      "intentResult": "historical",
+      "geocoding": {
+        "coordinates": {
+          "latitude": 17.67924,
+          "longitude": 75.33098
+        },
+        "location": {
+          "name": "Pandharpur",
+          "country": "India",
+          "admin1": "Maharashtra"
+        }
+      },
+      "weather": null
+    },
+    {
+      "testId": 740,
+      "city": "Pandharpur",
+      "scenarioId": "L",
+      "scenarioName": "NWP Model Comparison",
+      "category": "nwp",
+      "query": "Compare the GFS GRAPES and ECMWF IFS forecasts for Pandharpur for the next 3 days.",
+      "language": "en",
+      "requiresVoice": false,
+      "status": "PARTIAL",
+      "expectedChecks": [
+        "Both GFS and ECMWF models requested",
+        "Model-specific data retrieved",
+        "Forecast periods comparable",
+        "Differences explained",
+        "Timing: fetch < 12s, AI < 18s, total < 28s",
+        "Console timing logs present"
+      ],
+      "responseTime": 801,
+      "checks": {
+        "intentDetected": true,
+        "locationResolved": true,
+        "dataRetrieved": false,
+        "actualData": false,
+        "temperaturePresent": false,
+        "correctProvider": false
+      },
+      "issues": [
+        "NWP provider not tested (requires /api/nwp-forecast)"
+      ],
+      "providers": [],
+      "intentResult": "nwp",
+      "geocoding": {
+        "coordinates": {
+          "latitude": 17.67924,
+          "longitude": 75.33098
+        },
+        "location": {
+          "name": "Pandharpur",
+          "country": "India",
+          "admin1": "Maharashtra"
+        }
+      },
+      "weather": null
+    },
+    {
+      "testId": 741,
+      "city": "Pandharpur",
+      "scenarioId": "M",
+      "scenarioName": "IMD Official Warning",
+      "category": "imd",
+      "query": "What is the latest official IMD weather warning for Pandharpur?",
+      "language": "en",
+      "requiresVoice": false,
+      "status": "PARTIAL",
+      "expectedChecks": [
+        "IMD data source queried",
+        "Official warning status determined",
+        "Geographic applicability verified",
+        "No fabricated warnings",
+        "Clear handling of no-warning case"
+      ],
+      "responseTime": 583,
+      "checks": {
+        "intentDetected": true,
+        "locationResolved": true,
+        "dataRetrieved": false,
+        "actualData": false,
+        "temperaturePresent": false,
+        "correctProvider": false
+      },
+      "issues": [
+        "IMD provider not tested (requires /api/imd-alerts)"
+      ],
+      "providers": [],
+      "intentResult": "imd",
+      "geocoding": {
+        "coordinates": {
+          "latitude": 17.67924,
+          "longitude": 75.33098
+        },
+        "location": {
+          "name": "Pandharpur",
+          "country": "India",
+          "admin1": "Maharashtra"
+        }
+      },
+      "weather": null
+    }
+  ]
+}
