@@ -264,8 +264,8 @@ IMPORTANT: This is ${fullPeriodLabel.toLowerCase()} forecast data, NOT current w
 
   // â”€â”€ 1. IMD (India Meteorological Department) official data â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   // Priority order:
-  //   • isIMDWarningIntent  → IMD CAP RSS feed (real data) → Gemini synthesis
-  //   • isIMDNowcastIntent  → Google Search grounding (CAP has no nowcast)
+  //   • isIMDWarningIntent  → Official IMD warning data → Gemini synthesis
+  //   • isIMDNowcastIntent  → Google Search grounding (nowcast not in warning data)
   //   • isIMDRainfallIntent → Google Search grounding
   // Normal weather ("right now", "currently") does NOT reach here (fixed in weatherIntent.js)
   const isIMDWarning  = isIMDWarningIntent(text)
@@ -290,9 +290,9 @@ IMPORTANT: This is ${fullPeriodLabel.toLowerCase()} forecast data, NOT current w
       }
     }
 
-    // â”€â”€ IMD WARNING â†’ try CAP feed first â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // â”€â”€ IMD WARNING â†’ try official IMD data first â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     if (isIMDWarning) {
-      console.log('[WeatherGPT] IMD warning query — trying CAP feed for:', location.label)
+      console.log('[WeatherGPT] IMD warning query — trying official IMD data for:', location.label)
       try {
         const capResult = await fetchIMDCAPWarnings({ location: location.label })
         const alerts    = capResult.alerts || []
@@ -311,9 +311,9 @@ IMPORTANT: This is ${fullPeriodLabel.toLowerCase()} forecast data, NOT current w
           ).join('\n\n')
 
           capContext = `
-=== VERIFIED IMD OFFICIAL ALERTS FROM CAP FEED ===
-Source: India Meteorological Department (IMD) — Common Alerting Protocol
-Feed: https://cap-sources.s3.amazonaws.com/in-imd-en/rss.xml
+=== VERIFIED IMD OFFICIAL ALERTS ===
+Source: India Meteorological Department (IMD)
+Official Website: https://mausam.imd.gov.in/
 Fetched: ${capResult.fetchedAt}
 Status: ${capResult.sourceStatus}
 
@@ -322,32 +322,33 @@ ${alertSummaries}
 === END IMD ALERTS ===
 
 IMPORTANT RULES FOR YOUR RESPONSE:
-1. These are VERIFIED, real IMD alerts from the official CAP feed.
+1. These are VERIFIED, real IMD alerts from official sources.
 2. The user asked about: ${location.label} — resolved to state: ${state || 'unknown'}.
-3. CAP alerts are typically state/subdivision level — do NOT claim a specific city has/doesn't have a warning unless the alert text specifically names it.
+3. Alerts are typically state/subdivision level — do NOT claim a specific city has/doesn't have a warning unless the alert text specifically names it.
 4. If alerts are present: summarize what IMD has issued, the area, severity, onset/expiry.
-5. Clearly state: "Source: India Meteorological Department (IMD) CAP feed"
+5. Clearly state: "Source: India Meteorological Department (IMD)" with optional link to https://mausam.imd.gov.in/
 6. Be concise — 3-4 sentences maximum.
 7. Do NOT invent alert details beyond what is in the data above.
+8. Do NOT mention technical terms like "CAP feed", "RSS", or internal data formats.
 `.trim()
         } else {
           // No matching alerts in feed
-          const stateNote = `No active IMD alert for ${location.label} is currently visible in the IMD CAP feed (checked ${state ? `${state} region` : 'all regions'}).`
+          const stateNote = `No active IMD alert for ${location.label} is currently available in the warning data we could retrieve (checked ${state ? `${state} region` : 'all regions'}).`
 
           capContext = `
-IMD CAP STATUS FOR ${location.label.toUpperCase()}:
+IMD WARNING STATUS FOR ${location.label.toUpperCase()}:
 ${stateNote}
-The CAP feed currently contains ${capResult.allAlerts?.length ?? 0} total alert(s), none matching this region.
-Feed fetched: ${capResult.fetchedAt}
+The warning data currently contains ${capResult.allAlerts?.length ?? 0} total alert(s), none matching this region.
+Data retrieved: ${capResult.fetchedAt}
 
 IMPORTANT RULES FOR YOUR RESPONSE:
-1. Do NOT say there are definitely no warnings — CAP coverage may be incomplete.
-2. Use wording like: "No active IMD warning for ${location.label} is currently visible in the available CAP feed."
+1. Do NOT say there are definitely no warnings everywhere — our data retrieval may be incomplete.
+2. Use wording like: "No active IMD warning for ${location.label} is currently available in the warning data we could retrieve."
    - Always refer to the user's requested location (${location.label}), NOT to the state name (${state || 'unknown'}).
    - The state resolution is internal — users only care about the city they asked about.
-3. Do NOT apologize or mention technical limitations.
+3. Do NOT apologize or mention technical limitations, data formats, or "CAP feed".
 4. Be concise — 2 sentences maximum.
-5. End with: "Source: IMD CAP feed."
+5. End with: "Source: India Meteorological Department (IMD)" with optional link to https://mausam.imd.gov.in/
 `.trim()
         }
 
@@ -369,12 +370,12 @@ IMPORTANT RULES FOR YOUR RESPONSE:
           conversationId: aiResponse.conversationId,
         }
       } catch (capErr) {
-        console.warn('[WeatherGPT] CAP fetch failed, falling back to Google Search:', capErr.message)
+        console.warn('[WeatherGPT] Warning data fetch failed, falling back to Google Search:', capErr.message)
         // Fall through to Google Search grounding below
       }
     }
 
-    // â”€â”€ NOWCAST / RAINFALL / CAP fallback â†’ Google Search grounding â”€â”€â”€â”€â”€â”€â”€
+    // â”€â”€ NOWCAST / RAINFALL / Warning data fallback â†’ Google Search grounding â”€â”€â”€â”€â”€â”€â”€
     try {
       console.log('[WeatherGPT] IMD query — using Google Search grounding for:', location.label)
 

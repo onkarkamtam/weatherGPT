@@ -1,0 +1,82 @@
+{
+  "timestamp": "2026-10-09T09:51:36.664Z",
+  "tests": [
+    {
+      "name": "Backend error message user-friendly",
+      "passed": true,
+      "details": "Error message is user-friendly",
+      "timestamp": "2026-10-09T09:51:36.672Z"
+    },
+    {
+      "name": "No \"CAP feed\" exposure in instructions",
+      "passed": true,
+      "details": "System prompts properly instruct AI to avoid technical jargon",
+      "timestamp": "2026-10-09T09:51:36.674Z"
+    },
+    {
+      "name": "No \"CAP feed\" in source attribution instruction",
+      "passed": true,
+      "details": "Source attribution instruction is user-friendly",
+      "timestamp": "2026-10-09T09:51:36.674Z"
+    },
+    {
+      "name": "User-friendly IMD attribution present",
+      "passed": true,
+      "details": "Found proper \"Source: India Meteorological Department (IMD)\"",
+      "timestamp": "2026-10-09T09:51:36.675Z"
+    },
+    {
+      "name": "Official IMD website link present",
+      "passed": true,
+      "details": "Found https://mausam.imd.gov.in/ in attribution",
+      "timestamp": "2026-10-09T09:51:36.676Z"
+    },
+    {
+      "name": "No technical terms in \"no warning\" message",
+      "passed": true,
+      "details": "No-warning message is user-friendly",
+      "timestamp": "2026-10-09T09:51:36.677Z"
+    },
+    {
+      "name": "Appropriate uncertainty language",
+      "passed": true,
+      "details": "Uses \"warning data we could retrieve\" (appropriate uncertainty)",
+      "timestamp": "2026-10-09T09:51:36.677Z"
+    },
+    {
+      "name": "No user-facing \"CAP feed\" exposure",
+      "passed": true,
+      "details": "CAP references properly isolated (only in instructions to AVOID the term)",
+      "timestamp": "2026-10-09T09:51:36.679Z"
+    },
+    {
+      "name": "Fallback includes official website",
+      "passed": true,
+      "details": "Fallback message includes mausam.imd.gov.in reference",
+      "timestamp": "2026-10-09T09:51:36.680Z"
+    },
+    {
+      "name": "No unqualified \"no warnings\" claims",
+      "passed": true,
+      "details": "All \"no warning\" statements are properly qualified",
+      "timestamp": "2026-10-09T09:51:36.681Z"
+    },
+    {
+      "name": "Warning scope is location-specific",
+      "passed": true,
+      "details": "Warning messages are properly scoped to requested location",
+      "timestamp": "2026-10-09T09:51:36.681Z"
+    },
+    {
+      "name": "No-fabrication instruction present",
+      "passed": true,
+      "details": "AI instructed not to fabricate warning details",
+      "timestamp": "2026-10-09T09:51:36.682Z"
+    }
+  ],
+  "summary": {
+    "total": 12,
+    "passed": 12,
+    "failed": 0
+  }
+}

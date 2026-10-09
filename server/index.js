@@ -260,7 +260,7 @@ app.get('/api/imd-alerts', async (req, res) => {
   } catch (err) {
     console.error('[IMD CAP] /api/imd-alerts error:', err.message)
     return res.status(503).json({
-      error:  'IMD CAP feed is currently unavailable.',
+      error:  'IMD weather warning service is currently unavailable.',
       detail: err.message,
     })
   }
